@@ -2,14 +2,38 @@
   "name": "sasslight",
   "version": "0.1.0",
   "private": true,
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
+  "keywords": [
+    "\"sass",
+    "products",
+    "digital",
+    "hub\""
+  ],
+  "repository": {
+    "type": "git",
+    "url": "sasslight"
+  },
+  "license": "ISC",
+  "author": "sasslight",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:dev": "npx wrangler pages dev",
+    "pages:deploy": "npm run pages:build && npx wrangler pages deploy"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1090.0",
+    "@types/nodemailer": "^8.0.1",
     "next": "16.2.9",
+    "nodemailer": "^9.0.3",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
