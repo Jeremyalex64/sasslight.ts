@@ -1,0 +1,50 @@
+/**
+ * SASSLIGHT — Cloudflare Workers deployment config
+ * Docs: https://opennext.js.org/cloudflare
+ *
+ * DEPLOY STEPS:
+ * 1. Login:        npx wrangler login
+ * 2. Set secrets:  npx wrangler secret put ADMIN_PASSWORD
+ *                   npx wrangler secret put ADMIN_SECRET
+ *                   npx wrangler secret put CLOUDFLARE_ACCESS_KEY
+ *                   npx wrangler secret put CLOUDFLARE_SECRET_ACCESS_KEY
+ * 3. Preview:      npm run preview
+ * 4. Deploy:       npm run deploy
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sasslight",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-06-04",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets",
+  },
+  "images": {
+    "binding": "IMAGES",
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "sasslight",
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "CACHE_BUCKET",
+      "bucket_name": "sasslight",
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "PRODUCTS_KV",
+      "id": "50e2658d97d14c55b1f12bf61749fbf2",
+      "preview_id": "9a5be8239cf94e65b0466590794ebefc",
+    },
+  ],
+  "observability": {
+    "enabled": true,
+  },
+  "upload_source_maps": true,
+}

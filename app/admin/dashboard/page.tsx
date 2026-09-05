@@ -14,7 +14,7 @@ export default function AdminDashboard() {
     try {
       const res = await fetch("/api/products");
       const data = await res.json();
-      setProducts(data);
+      setProducts(data as Product[]);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -191,11 +191,11 @@ function AddProductForm({
   useEffect(() => {
     if (editingProduct) {
       setFormData({
-        name: editingProduct.name,
-        description: editingProduct.description,
-        image: editingProduct.image,
-        affiliateLink: editingProduct.affiliateLink,
-        price: editingProduct.price,
+        name: editingProduct.name || "",
+        description: editingProduct.description || "",
+        image: editingProduct.image || "",
+        affiliateLink: editingProduct.affiliateLink || "",
+        price: editingProduct.price || "",
       });
     }
   }, [editingProduct]);
@@ -215,10 +215,22 @@ function AddProductForm({
         });
 
         if (uploadRes.ok) {
-          const uploadData = await uploadRes.json();
+          const uploadData = (await uploadRes.json()) as { url: string };
           imageUrl = uploadData.url;
         } else {
-          console.error("Image upload failed");
+          const errorText = await uploadRes.text();
+          console.error("Image upload failed:", errorText);
+          try {
+            const errorData = JSON.parse(errorText) as {
+              error?: string;
+              details?: string;
+            };
+            alert(
+              `Image upload failed: ${errorData.error || errorData.details || "Unknown error"}`,
+            );
+          } catch {
+            alert(`Image upload failed: ${errorText || "Unknown error"}`);
+          }
           return;
         }
       }
@@ -255,7 +267,7 @@ function AddProductForm({
         </label>
         <input
           type="text"
-          value={formData.name}
+          value={formData.name || ""}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900"
           required
@@ -266,7 +278,7 @@ function AddProductForm({
           Description
         </label>
         <textarea
-          value={formData.description}
+          value={formData.description || ""}
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })
           }
@@ -311,8 +323,9 @@ function AddProductForm({
         </div>
         {uploadMethod === "url" ? (
           <input
+            key="url-input"
             type="url"
-            value={formData.image}
+            value={formData.image || ""}
             onChange={(e) =>
               setFormData({ ...formData, image: e.target.value })
             }
@@ -322,6 +335,7 @@ function AddProductForm({
           />
         ) : (
           <input
+            key="file-input"
             type="file"
             accept="image/*"
             onChange={(e) => setImageFile(e.target.files?.[0] || null)}
@@ -336,7 +350,7 @@ function AddProductForm({
         </label>
         <input
           type="url"
-          value={formData.affiliateLink}
+          value={formData.affiliateLink || ""}
           onChange={(e) =>
             setFormData({ ...formData, affiliateLink: e.target.value })
           }
@@ -350,7 +364,7 @@ function AddProductForm({
         </label>
         <input
           type="text"
-          value={formData.price}
+          value={formData.price || ""}
           onChange={(e) => setFormData({ ...formData, price: e.target.value })}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900"
           required

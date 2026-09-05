@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { deleteProduct, updateProduct } from "@/lib/products";
+import { deleteProduct, updateProduct, Product } from "@/lib/products";
 
 export async function DELETE(
   request: NextRequest,
@@ -34,7 +34,7 @@ export async function PUT(
   try {
     const params = await context.params;
     const { id } = params;
-    const updates = await request.json();
+    const updates = (await request.json()) as Partial<Product>;
     console.log("PUT request for product ID:", id, "updates:", updates);
     const updated = updateProduct(id, updates);
 

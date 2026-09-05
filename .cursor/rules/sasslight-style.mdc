@@ -1,0 +1,29 @@
+---
+description: SASSLIGHT brand style — gold on black, always use brand tokens from src/lib/brand.ts
+globs: src/**/*.{tsx,ts,css}
+alwaysApply: true
+---
+
+# SASSLIGHT Style Guide
+
+Always import and use tokens from `src/lib/brand.ts` for colors, buttons, inputs, surfaces, and layout.
+
+## Brand Rules
+- **Palette:** black backgrounds, gold/amber accents (`amber-400`–`amber-600`), zinc text
+- **Never use:** emerald/green accents on this project
+- **Logo:** use `<NavBrand />` component — do not recreate logo markup
+- **Buttons:** use `brand.button.primary` / `brand.button.secondary`
+- **Inputs:** use `brand.input` and `brand.label`
+- **Cards:** use `brand.surfaces.card` or `brand.surfaces.cardHighlight`
+- **Page layout:** use `brand.layout.container` or `brand.layout.pageNarrow`
+- **Nav:** header uses `brand.surfaces.header` + `NavBrand size="nav"`
+
+## New Components
+- One component per file, function declaration for components
+- Match existing spacing: `rounded-2xl`, `rounded-lg`, `px-4 sm:px-6`
+- Affiliate links: `rel="noopener noreferrer sponsored"`
+
+## Cloudflare
+- Products stored in `PRODUCTS_KV` binding (production deploy)
+- Admin secrets via `wrangler secret put` — never commit passwords
+- Deploy with `npm run deploy`
