@@ -15,7 +15,7 @@ export default function Home() {
   const fetchProducts = useCallback(async () => {
     try {
       const res = await fetch("/api/products");
-      const data = await res.json();
+      const data = (await res.json()) as Product[];
       setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
