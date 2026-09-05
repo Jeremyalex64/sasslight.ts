@@ -15,7 +15,13 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as {
+      name: string;
+      description: string;
+      image: string;
+      affiliateLink: string;
+      price: string;
+    };
     const { name, description, image, affiliateLink, price } = body;
 
     if (!name || !description || !image || !affiliateLink || !price) {
