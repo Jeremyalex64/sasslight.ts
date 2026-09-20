@@ -12,3 +12,6 @@ R2_PUBLIC_URL = "https://pub-33ab078fa67a4d769429a5ebab950119.r2.dev"
 # Resend email configuration (using account email for testing)
 RESEND_FROM_EMAIL = "onboarding@resend.dev"
 RESEND_TO_EMAIL = "momohjeremiah64@gmail.com"
+# Sanity CMS configuration
+NEXT_PUBLIC_SANITY_PROJECT_ID = "uufsl4zl"
+NEXT_PUBLIC_SANITY_DATASET = "production"
