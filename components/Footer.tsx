@@ -3,16 +3,17 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
+          <div className="col-span-2 sm:col-span-1 text-left">
+            <div className="flex items-center gap-2 mb-3 sm:mb-4">
               <svg
-                width="40"
-                height="40"
+                width="32"
+                height="32"
                 viewBox="0 0 40 40"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className="sm:w-10 sm:h-10"
               >
                 <circle
                   cx="20"
@@ -41,56 +42,78 @@ export default function Footer() {
                   </linearGradient>
                 </defs>
               </svg>
-              <span className="text-xl font-bold">
+              <span className="text-lg sm:text-xl font-bold">
                 <span className="text-gray-300">SASS</span>
                 <span className="text-amber-500">LIGHT</span>
               </span>
             </div>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-400 text-xs sm:text-sm">
               Your trusted source for quality affiliate products and exclusive
               deals.
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-gray-400 text-sm">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
+              Quick Links
+            </h3>
+            <ul className="space-y-1 sm:space-y-2 text-gray-400 text-xs sm:text-sm">
               <li>
-                <Link href="/" className="hover:text-amber-500 transition">
+                <Link
+                  href="/"
+                  className="hover:text-amber-500 transition inline-block py-1"
+                  aria-label="Browse our curated affiliate products and exclusive deals"
+                >
                   Products
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-amber-500 transition">
+                <Link
+                  href="/about"
+                  className="hover:text-amber-500 transition inline-block py-1"
+                  aria-label="Learn about Sasslight and our mission"
+                >
                   About
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="hover:text-amber-500 transition"
+                  className="hover:text-amber-500 transition inline-block py-1"
+                  aria-label="Contact Sasslight support team"
                 >
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/blogs" className="hover:text-amber-500 transition">
+                <Link
+                  href="/blogs"
+                  className="hover:text-amber-500 transition inline-block py-1"
+                  aria-label="Read our affiliate marketing blog and insights"
+                >
                   Blogs
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2 text-gray-400 text-sm">
+            <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
+              Legal
+            </h3>
+            <ul className="space-y-1 sm:space-y-2 text-gray-400 text-xs sm:text-sm">
               <li>
-                <Link href="/terms" className="hover:text-amber-500 transition">
+                <Link
+                  href="/terms"
+                  className="hover:text-amber-500 transition inline-block py-1"
+                  aria-label="Read our Terms and Conditions"
+                >
                   Terms and Conditions
                 </Link>
               </li>
               <li>
                 <Link
                   href="/privacy"
-                  className="hover:text-amber-500 transition"
+                  className="hover:text-amber-500 transition inline-block py-1"
+                  aria-label="Read our Privacy Policy"
                 >
                   Privacy Policy
                 </Link>
@@ -98,7 +121,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+        <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400 text-xs sm:text-sm">
           <p>
             &copy; {new Date().getFullYear()} Sasslight. All rights reserved.
           </p>

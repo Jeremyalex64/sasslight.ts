@@ -1,35 +1,57 @@
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+const Navigation = dynamic(() => import("@/components/Navigation"), {
+  ssr: true,
+  loading: () => <nav className="h-16 bg-white shadow-sm" />,
+});
+
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: true,
+  loading: () => <footer className="h-16 bg-gray-900" />,
+});
+
+export const revalidate = 1800; // Revalidate every 30 minutes for blog posts
+
+export const metadata: Metadata = {
+  title: "Blog - Sasslight Affiliate Marketing Insights",
+  description:
+    "Discover expert tips, strategies, and insights on affiliate marketing, digital products, and business growth from the Sasslight team.",
+};
 
 export default function Blogs() {
   const blogPosts = [
     {
       id: 1,
-      title: 'How to Choose the Right Affiliate Products',
-      excerpt: 'Learn the key factors to consider when selecting affiliate products to promote on your platform.',
-      date: 'July 15, 2026',
-      category: 'Affiliate Marketing',
+      title: "How to Choose the Right Affiliate Products",
+      excerpt:
+        "Learn the key factors to consider when selecting affiliate products to promote on your platform.",
+      date: "July 15, 2026",
+      category: "Affiliate Marketing",
     },
     {
       id: 2,
-      title: 'Maximizing Your Affiliate Revenue',
-      excerpt: 'Strategies and tips to increase your affiliate earnings and build a sustainable income stream.',
-      date: 'July 10, 2026',
-      category: 'Marketing Tips',
+      title: "Maximizing Your Affiliate Revenue",
+      excerpt:
+        "Strategies and tips to increase your affiliate earnings and build a sustainable income stream.",
+      date: "July 10, 2026",
+      category: "Marketing Tips",
     },
     {
       id: 3,
-      title: 'Understanding Digital Product Trends',
-      excerpt: 'Stay ahead of the curve with insights into the latest digital product trends and consumer behavior.',
-      date: 'July 5, 2026',
-      category: 'Industry Insights',
+      title: "Understanding Digital Product Trends",
+      excerpt:
+        "Stay ahead of the curve with insights into the latest digital product trends and consumer behavior.",
+      date: "July 5, 2026",
+      category: "Industry Insights",
     },
     {
       id: 4,
-      title: 'Building Trust with Your Audience',
-      excerpt: 'Essential practices for establishing credibility and trust with your affiliate marketing audience.',
-      date: 'June 28, 2026',
-      category: 'Business Growth',
+      title: "Building Trust with Your Audience",
+      excerpt:
+        "Essential practices for establishing credibility and trust with your affiliate marketing audience.",
+      date: "June 28, 2026",
+      category: "Business Growth",
     },
   ];
 
@@ -52,9 +74,14 @@ export default function Blogs() {
                     </span>
                     <span className="text-xs text-gray-500">{post.date}</span>
                   </div>
-                  <h2 className="text-xl font-semibold mb-3 text-gray-900">{post.title}</h2>
+                  <h2 className="text-xl font-semibold mb-3 text-gray-900">
+                    {post.title}
+                  </h2>
                   <p className="text-gray-600 text-sm mb-4">{post.excerpt}</p>
-                  <button className="text-amber-600 font-medium hover:text-amber-700 transition">
+                  <button
+                    className="text-amber-600 font-medium hover:text-amber-700 transition"
+                    aria-label={`Read more about ${post.title}`}
+                  >
                     Read More →
                   </button>
                 </div>

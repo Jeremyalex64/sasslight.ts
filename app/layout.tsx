@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
 import "./globals.css";
-
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title:
@@ -26,12 +18,38 @@ export const metadata: Metadata = {
     "discount products",
   ],
   authors: [{ name: "Sasslight" }],
+  metadataBase: new URL("https://sasslight.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Sasslight - Affiliate Marketing Store",
     description:
       "Your trusted source for quality affiliate products and exclusive deals",
     type: "website",
+    url: "https://sasslight.com",
+    siteName: "Sasslight",
+    images: [
+      {
+        url: "https://sasslight.com/sasslight-logo.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sasslight - Affiliate Marketing Store",
+    description:
+      "Your trusted source for quality affiliate products and exclusive deals",
+    images: ["https://sasslight.com/sasslight-logo.png"],
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -39,8 +57,36 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Sasslight",
+    description:
+      "Your trusted source for quality affiliate products and exclusive deals",
+    url: "https://sasslight.com",
+    logo: "https://sasslight.com/sasslight-logo.png",
+  };
+
   return (
-    <html lang="en" className={`${roboto.variable} h-full antialiased`}>
+    <html lang="en" className="h-full antialiased">
+      <head>
+        <link rel="icon" href="/sasslight-logo.png" type="image/png" />
+        <link
+          rel="dns-prefetch"
+          href="https://pub-ce20785b75344a2485765616a6418c35.r2.dev"
+        />
+        <link
+          rel="preload"
+          href="/sasslight-logo.png"
+          as="image"
+          type="image/png"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          async
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );

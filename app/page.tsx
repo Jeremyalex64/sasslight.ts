@@ -1,145 +1,87 @@
-"use client";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
 
-import { useCallback, useEffect, useState } from "react";
-import { Product } from "@/lib/products";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+const Navigation = dynamic(() => import("@/components/Navigation"), {
+  ssr: true,
+  loading: () => <nav className="h-16 bg-white shadow-sm" />,
+});
 
-const PRODUCTS_PER_PAGE = 20;
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: true,
+  loading: () => <footer className="h-16 bg-gray-900" />,
+});
+
+const ProductsList = dynamic(() => import("./components/ProductsList"), {
+  loading: () => (
+    <div className="text-center py-12">
+      <p className="text-gray-500">Loading products...</p>
+    </div>
+  ),
+});
+
+export const revalidate = 1800; // Revalidate every 30 minutes
+
+export const metadata: Metadata = {
+  title:
+    "Sasslight - Affiliate Marketing Store | Best Deals & Exclusive Products",
+  description:
+    "Discover amazing affiliate products and exclusive deals at Sasslight. Your trusted source for quality digital products, software, courses, and more at unbeatable prices.",
+  keywords: [
+    "affiliate marketing",
+    "digital products",
+    "online courses",
+    "software deals",
+    "exclusive offers",
+    "best deals",
+    "Sasslight",
+    "affiliate store",
+    "discount products",
+  ],
+  authors: [{ name: "Sasslight" }],
+  metadataBase: new URL("https://sasslight.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Sasslight - Affiliate Marketing Store",
+    description:
+      "Your trusted source for quality affiliate products and exclusive deals",
+    type: "website",
+    url: "https://sasslight.com",
+    siteName: "Sasslight",
+    images: [
+      {
+        url: "https://sasslight.com/sasslight-logo.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sasslight - Affiliate Marketing Store",
+    description:
+      "Your trusted source for quality affiliate products and exclusive deals",
+    images: ["https://sasslight.com/sasslight-logo.png"],
+  },
+};
 
 export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const fetchProducts = useCallback(async () => {
-    try {
-      const res = await fetch("/api/products");
-      const data = (await res.json()) as Product[];
-      setProducts(data);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery]);
-
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
-
-  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
-  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-  const endIndex = startIndex + PRODUCTS_PER_PAGE;
-  const currentProducts = filteredProducts.slice(startIndex, endIndex);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navigation />
       <main className="flex-1">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">
-              Featured Products
-            </h2>
-            <p className="mt-2 text-gray-600">
-              Discover amazing deals and exclusive offers
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
+              Discover Amazing Affiliate Products
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+              Your trusted source for quality digital products, software,
+              courses, and exclusive deals at unbeatable prices.
             </p>
           </div>
-
-          <div className="mb-8 max-w-md mx-auto">
-            <input
-              type="text"
-              placeholder="Search products by name..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900"
-            />
-          </div>
-
-          {products.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">
-                No products available yet.
-              </p>
-              <p className="text-gray-400 mt-2">
-                Check back soon for new additions!
-              </p>
-            </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {currentProducts.map((product) => (
-                  <div
-                    key={product.id}
-                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
-                  >
-                    {product.image && (
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-48 object-cover"
-                      />
-                    )}
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold mb-2 text-gray-900">
-                        {product.name}
-                      </h3>
-                      <p className="text-gray-900 text-sm mb-4 line-clamp-3">
-                        {product.description}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-2xl font-bold text-green-600">
-                          {product.price}
-                        </span>
-                        <a
-                          href={product.affiliateLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
-                        >
-                          Learn More
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {totalPages > 1 && (
-                <div className="flex justify-center items-center gap-2 mt-8">
-                  <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 bg-white border rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Previous
-                  </button>
-                  <span className="text-gray-700">
-                    Page {currentPage} of {totalPages}
-                  </span>
-                  <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="px-4 py-2 bg-white border rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Next
-                  </button>
-                </div>
-              )}
-            </>
-          )}
+          <ProductsList />
         </div>
       </main>
       <Footer />

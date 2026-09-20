@@ -3,16 +3,12 @@ compatibility_date = "2024-01-01"
 
 # Environment variables for production
 [vars]
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = "587"
-EMAIL_SECURE = "false"
-EMAIL_USER = "jerryalex10000@gmail.com"
-EMAIL_PASSWORD = "zdjp xkps dfad xpgc"
-EMAIL_FROM = "jerryalex10000@gmail.com"
-EMAIL_TO = "jerryalex10000@gmail.com"
 PASSWORD = "luke4040"
 R2_ENDPOINT = "https://a0becee0453fbc6a327b66ad01bc049c.r2.cloudflarestorage.com"
 R2_ACCESS_KEY_ID = "2d874b61ab5626b36ec8c4cff6d2b707"
 R2_SECRET_ACCESS_KEY = "43fc2fd0f5b7ecc345671c89e15cb4881980c5ba311592acd5df1f9383970517"
 R2_BUCKET_NAME = "sasslight"
 R2_PUBLIC_URL = "https://pub-33ab078fa67a4d769429a5ebab950119.r2.dev"
+# Resend email configuration (using account email for testing)
+RESEND_FROM_EMAIL = "onboarding@resend.dev"
+RESEND_TO_EMAIL = "momohjeremiah64@gmail.com"

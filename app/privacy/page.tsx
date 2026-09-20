@@ -1,5 +1,21 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+const Navigation = dynamic(() => import("@/components/Navigation"), {
+  ssr: true,
+  loading: () => <nav className="h-16 bg-white shadow-sm" />,
+});
+
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: true,
+  loading: () => <footer className="h-16 bg-gray-900" />,
+});
+
+export const metadata: Metadata = {
+  title: "Privacy Policy - Sasslight",
+  description:
+    "Read Sasslight's privacy policy to understand how we collect, use, and protect your personal information.",
+};
 
 export default function Privacy() {
   return (

@@ -1,5 +1,21 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import { Metadata } from "next";
+import dynamic from "next/dynamic";
+
+const Navigation = dynamic(() => import("@/components/Navigation"), {
+  ssr: true,
+  loading: () => <nav className="h-16 bg-white shadow-sm" />,
+});
+
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: true,
+  loading: () => <footer className="h-16 bg-gray-900" />,
+});
+
+export const metadata: Metadata = {
+  title: "Terms and Conditions - Sasslight",
+  description:
+    "Read Sasslight's terms and conditions to understand your rights and responsibilities when using our affiliate marketing platform.",
+};
 
 export default function Terms() {
   return (

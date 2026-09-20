@@ -10,7 +10,11 @@ export default function Navigation() {
     <nav className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <Link href="/" className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="flex items-center gap-2"
+            aria-label="Sasslight Home - Affiliate Marketing Store"
+          >
             <svg
               width="40"
               height="40"
@@ -51,24 +55,28 @@ export default function Navigation() {
             <Link
               href="/"
               className="text-gray-700 hover:text-amber-700 font-medium transition"
+              aria-label="Browse our curated affiliate products and exclusive deals"
             >
               Products
             </Link>
             <Link
               href="/about"
               className="text-gray-700 hover:text-amber-700 font-medium transition"
+              aria-label="Learn about Sasslight and our mission"
             >
               About
             </Link>
             <Link
               href="/contact"
               className="text-gray-700 hover:text-amber-700 font-medium transition"
+              aria-label="Contact Sasslight support team"
             >
               Contact
             </Link>
             <Link
               href="/blogs"
               className="text-gray-700 hover:text-amber-700 font-medium transition"
+              aria-label="Read our affiliate marketing blog and insights"
             >
               Blogs
             </Link>
@@ -77,7 +85,8 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md hover:bg-gray-100 transition"
+            className="md:hidden p-3 rounded-md hover:bg-gray-100 transition active:bg-gray-200"
+            aria-label="Toggle menu"
           >
             <svg
               className="w-6 h-6 text-gray-800"
@@ -106,32 +115,36 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 space-y-2">
+          <div className="md:hidden py-4 space-y-1">
             <Link
               href="/"
-              className="block text-gray-700 hover:text-amber-700 font-medium transition py-2"
+              className="block text-gray-700 hover:text-amber-700 font-medium transition py-3 px-4 rounded-md hover:bg-gray-50 active:bg-gray-100"
               onClick={() => setIsOpen(false)}
+              aria-label="Browse our curated affiliate products and exclusive deals"
             >
               Products
             </Link>
             <Link
               href="/about"
-              className="block text-gray-700 hover:text-amber-700 font-medium transition py-2"
+              className="block text-gray-700 hover:text-amber-700 font-medium transition py-3 px-4 rounded-md hover:bg-gray-50 active:bg-gray-100"
               onClick={() => setIsOpen(false)}
+              aria-label="Learn about Sasslight and our mission"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="block text-gray-700 hover:text-amber-700 font-medium transition py-2"
+              className="block text-gray-700 hover:text-amber-700 font-medium transition py-3 px-4 rounded-md hover:bg-gray-50 active:bg-gray-100"
               onClick={() => setIsOpen(false)}
+              aria-label="Contact Sasslight support team"
             >
               Contact
             </Link>
             <Link
               href="/blogs"
-              className="block text-gray-700 hover:text-amber-700 font-medium transition py-2"
+              className="block text-gray-700 hover:text-amber-700 font-medium transition py-3 px-4 rounded-md hover:bg-gray-50 active:bg-gray-100"
               onClick={() => setIsOpen(false)}
+              aria-label="Read our affiliate marketing blog and insights"
             >
               Blogs
             </Link>
