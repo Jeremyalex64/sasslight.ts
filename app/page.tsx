@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     "Discover amazing affiliate products and exclusive deals at Sasslight. Your trusted source for quality digital products, software, courses, and more at unbeatable prices.",
   keywords: [
     "affiliate marketing",
+    "buy digital products",
     "digital products",
     "online courses",
     "software deals",

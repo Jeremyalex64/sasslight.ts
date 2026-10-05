@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav className="bg-white shadow-sm">
@@ -54,28 +58,44 @@ export default function Navigation() {
           <div className="hidden md:flex items-center gap-6">
             <Link
               href="/"
-              className="text-gray-700 hover:text-amber-700 font-medium transition"
+              className={`font-medium transition ${
+                isActive("/")
+                  ? "text-amber-700"
+                  : "text-gray-700 hover:text-amber-700"
+              }`}
               aria-label="Browse our curated affiliate products and exclusive deals"
             >
               Products
             </Link>
             <Link
               href="/about"
-              className="text-gray-700 hover:text-amber-700 font-medium transition"
+              className={`font-medium transition ${
+                isActive("/about")
+                  ? "text-amber-700"
+                  : "text-gray-700 hover:text-amber-700"
+              }`}
               aria-label="Learn about Sasslight and our mission"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="text-gray-700 hover:text-amber-700 font-medium transition"
+              className={`font-medium transition ${
+                isActive("/contact")
+                  ? "text-amber-700"
+                  : "text-gray-700 hover:text-amber-700"
+              }`}
               aria-label="Contact Sasslight support team"
             >
               Contact
             </Link>
             <Link
               href="/blogs"
-              className="text-gray-700 hover:text-amber-700 font-medium transition"
+              className={`font-medium transition ${
+                isActive("/blogs")
+                  ? "text-amber-700"
+                  : "text-gray-700 hover:text-amber-700"
+              }`}
               aria-label="Read our affiliate marketing blog and insights"
             >
               Blogs
@@ -118,7 +138,11 @@ export default function Navigation() {
           <div className="md:hidden py-4 space-y-1">
             <Link
               href="/"
-              className="block text-gray-700 hover:text-amber-700 font-medium transition py-3 px-4 rounded-md hover:bg-gray-50 active:bg-gray-100"
+              className={`block font-medium transition py-3 px-4 rounded-md active:bg-gray-100 ${
+                isActive("/")
+                  ? "text-amber-700 bg-amber-50"
+                  : "text-gray-700 hover:text-amber-700 hover:bg-gray-50"
+              }`}
               onClick={() => setIsOpen(false)}
               aria-label="Browse our curated affiliate products and exclusive deals"
             >
@@ -126,7 +150,11 @@ export default function Navigation() {
             </Link>
             <Link
               href="/about"
-              className="block text-gray-700 hover:text-amber-700 font-medium transition py-3 px-4 rounded-md hover:bg-gray-50 active:bg-gray-100"
+              className={`block font-medium transition py-3 px-4 rounded-md active:bg-gray-100 ${
+                isActive("/about")
+                  ? "text-amber-700 bg-amber-50"
+                  : "text-gray-700 hover:text-amber-700 hover:bg-gray-50"
+              }`}
               onClick={() => setIsOpen(false)}
               aria-label="Learn about Sasslight and our mission"
             >
@@ -134,7 +162,11 @@ export default function Navigation() {
             </Link>
             <Link
               href="/contact"
-              className="block text-gray-700 hover:text-amber-700 font-medium transition py-3 px-4 rounded-md hover:bg-gray-50 active:bg-gray-100"
+              className={`block font-medium transition py-3 px-4 rounded-md active:bg-gray-100 ${
+                isActive("/contact")
+                  ? "text-amber-700 bg-amber-50"
+                  : "text-gray-700 hover:text-amber-700 hover:bg-gray-50"
+              }`}
               onClick={() => setIsOpen(false)}
               aria-label="Contact Sasslight support team"
             >
@@ -142,7 +174,11 @@ export default function Navigation() {
             </Link>
             <Link
               href="/blogs"
-              className="block text-gray-700 hover:text-amber-700 font-medium transition py-3 px-4 rounded-md hover:bg-gray-50 active:bg-gray-100"
+              className={`block font-medium transition py-3 px-4 rounded-md active:bg-gray-100 ${
+                isActive("/blogs")
+                  ? "text-amber-700 bg-amber-50"
+                  : "text-gray-700 hover:text-amber-700 hover:bg-gray-50"
+              }`}
               onClick={() => setIsOpen(false)}
               aria-label="Read our affiliate marketing blog and insights"
             >
