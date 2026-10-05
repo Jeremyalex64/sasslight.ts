@@ -9,7 +9,7 @@ export async function DELETE(
     const params = await context.params;
     const { id } = params;
     console.log("DELETE request for product ID:", id);
-    const success = deleteProduct(id);
+    const success = await deleteProduct(id);
 
     if (!success) {
       console.log("Product not found:", id);
@@ -36,7 +36,7 @@ export async function PUT(
     const { id } = params;
     const updates = (await request.json()) as Partial<Product>;
     console.log("PUT request for product ID:", id, "updates:", updates);
-    const updated = updateProduct(id, updates);
+    const updated = await updateProduct(id, updates);
 
     if (!updated) {
       console.log("Product not found for update:", id);

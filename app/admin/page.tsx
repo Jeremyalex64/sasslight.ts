@@ -13,7 +13,8 @@ export default function AdminLogin() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === ADMIN_PASSWORD) {
-      localStorage.setItem("adminAuth", "true");
+      document.cookie =
+        "adminAuth=true; path=/; max-age=86400; SameSite=strict";
       router.push("/admin/dashboard");
     } else {
       setError("Invalid password");

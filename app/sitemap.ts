@@ -1,7 +1,18 @@
 import { MetadataRoute } from "next";
+import { getSitemapPosts } from "@/sanity/queries";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://sasslight.com";
+  const posts = await getSitemapPosts();
+
+  const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
+    url: `${baseUrl}/blogs/${post.slug}`,
+    lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
 
   return [
     {
@@ -28,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.9,
     },
+    ...blogEntries,
     {
       url: `${baseUrl}/privacy`,
       lastModified: new Date(),

@@ -1,24 +1,29 @@
 import { PortableText as PortableTextComponent } from "@portabletext/react";
 import Image from "next/image";
+import { urlFor } from "@/sanity/image-url";
 
 const components = {
   types: {
-    image: ({ value }: any) => (
-      <div className="my-8">
-        <Image
-          src={value.asset}
-          alt={value.alt || ""}
-          width={800}
-          height={450}
-          className="rounded-lg w-full"
-        />
-        {value.alt && (
-          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            {value.alt}
-          </p>
-        )}
-      </div>
-    ),
+    image: ({ value }: any) => {
+      if (!value?.asset) return null;
+
+      return (
+        <div className="my-8">
+          <Image
+            src={urlFor(value).width(800).height(450).url()}
+            alt={value.alt || ""}
+            width={800}
+            height={450}
+            className="rounded-lg w-full"
+          />
+          {value.alt && (
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+              {value.alt}
+            </p>
+          )}
+        </div>
+      );
+    },
     styledText: ({ value }: any) => {
       const style: React.CSSProperties = {};
       if (value.fontFamily) style.fontFamily = value.fontFamily;

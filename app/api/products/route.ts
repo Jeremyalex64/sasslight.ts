@@ -3,7 +3,7 @@ import { getProducts, addProduct } from "@/lib/products";
 
 export async function GET() {
   try {
-    const products = getProducts();
+    const products = await getProducts();
     return NextResponse.json(products);
   } catch {
     return NextResponse.json(
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newProduct = addProduct({
+    const newProduct = await addProduct({
       name,
       description,
       image,

@@ -8,6 +8,7 @@
  *                   npx wrangler secret put ADMIN_SECRET
  *                   npx wrangler secret put CLOUDFLARE_ACCESS_KEY
  *                   npx wrangler secret put CLOUDFLARE_SECRET_ACCESS_KEY
+ *                   npx wrangler secret put SANITY_API_TOKEN
  * 3. Preview:      npm run preview
  * 4. Deploy:       npm run deploy
  */
@@ -17,6 +18,10 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-06-04",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "uufsl4zl",
+    "NEXT_PUBLIC_SANITY_DATASET": "production",
+  },
   "assets": {
     "binding": "ASSETS",
     "directory": ".open-next/assets",
@@ -46,5 +51,5 @@
   "observability": {
     "enabled": true,
   },
-  "upload_source_maps": true,
+  "upload_source_maps": false,
 }

@@ -21,7 +21,10 @@ export default function AdminDashboard() {
   };
 
   useEffect(() => {
-    const auth = localStorage.getItem("adminAuth");
+    const auth = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("adminAuth="))
+      ?.split("=")[1];
     if (auth !== "true") {
       router.push("/admin");
     } else {
@@ -53,7 +56,7 @@ export default function AdminDashboard() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("adminAuth");
+    document.cookie = "adminAuth=; path=/; max-age=0; SameSite=strict";
     router.push("/admin");
   };
 
