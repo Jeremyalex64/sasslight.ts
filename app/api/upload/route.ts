@@ -1,14 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
-const s3Client = new S3Client({
-  region: "auto",
-  endpoint: process.env.R2_ENDPOINT,
-  credentials: {
-    accessKeyId: process.env.R2_ACCESS_KEY_ID || "",
-    secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || "",
-  },
-});
+// Lazy S3 client — initialized only on first upload request.
+// Creating it at module scope runs during Worker cold start
+// and can exceed the free-plan CPU budget (Error 1102).
+let _s3Client: S3Client | undefined;
+
+function getS3Client() {
+  if (!_s3Client) {
+    _s3Client = new S3Client({
+      region: "auto",
+      endpoint: process.env.R2_ENDPOINT,
+      credentials: {
+        accessKeyId: process.env.R2_ACCESS_KEY_ID || "",
+        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || "",
+      },
+    });
+  }
+  return _s3Client;
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,7 +35,7 @@ export async function POST(request: NextRequest) {
     const fileName = `${Date.now()}-${file.name}`;
     const bucketName = process.env.R2_BUCKET_NAME || "sasslight";
 
-    await s3Client.send(
+    await getS3Client().send(
       new PutObjectCommand({
         Bucket: bucketName,
         Key: fileName,
@@ -35,9 +45,6 @@ export async function POST(request: NextRequest) {
     );
 
     const url = `${process.env.R2_PUBLIC_URL}/${fileName}`;
-    console.log("Upload successful, URL:", url);
-    console.log("R2_PUBLIC_URL:", process.env.R2_PUBLIC_URL);
-    console.log("FileName:", fileName);
     return NextResponse.json({ url });
   } catch (error) {
     console.error("Error uploading file:", error);
