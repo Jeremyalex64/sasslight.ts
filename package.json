@@ -12,6 +12,9 @@
     "analyze": "cross-env ANALYZE=true next build --webpack",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
   },
+  "overrides": {
+    "esbuild": "^0.28.1"
+  },
   "dependencies": {
     "@next/bundle-analyzer": "^16.3.5",
     "@opennextjs/cloudflare": "^1.19.9",
@@ -20,12 +23,12 @@
     "@sanity/image-url": "^2.1.1",
     "@upstash/redis": "^1.34.0",
     "jose": "^6.2.3",
-    "next": "16.2.6",
-    "next-sanity": "^13.3.4",
+    "next": "^16.3.8",
+    "next-sanity": "^11.6.13",
     "react": "^19.1.7",
     "react-dom": "^19.2.8",
     "resend": "^4.0.0",
-    "sanity": "^6.12.0"
+    "sanity": "^5.14.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -35,7 +38,7 @@
     "@types/react-dom": "^19.1.7",
     "cross-env": "^10.1.0",
     "eslint": "^9",
-    "eslint-config-next": "16.2.6",
+    "eslint-config-next": "^14.2.35",
     "tailwindcss": "^4",
     "typescript": "^5.7.4",
     "wrangler": "^4.98.0"
