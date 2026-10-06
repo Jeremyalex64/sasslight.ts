@@ -1,0 +1,826 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "publishedAt",
+        "type": "datetime"
+      },
+      {
+        "rows": 3,
+        "description": "Short description for SEO and previews",
+        "name": "excerpt",
+        "type": "text"
+      },
+      {
+        "of": [
+          {
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bullet"
+              },
+              {
+                "value": "number",
+                "title": "Numbered"
+              }
+            ],
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "description": "Enter URL with https:// or http://",
+                      "name": "href",
+                      "type": "string",
+                      "title": "URL"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                },
+                {
+                  "fields": [
+                    {
+                      "options": {
+                        "list": [
+                          {
+                            "title": "Inter",
+                            "value": "Inter, sans-serif"
+                          },
+                          {
+                            "title": "Roboto",
+                            "value": "Roboto, sans-serif"
+                          },
+                          {
+                            "title": "Open Sans",
+                            "value": "Open Sans, sans-serif"
+                          },
+                          {
+                            "title": "Lato",
+                            "value": "Lato, sans-serif"
+                          },
+                          {
+                            "title": "Montserrat",
+                            "value": "Montserrat, sans-serif"
+                          },
+                          {
+                            "title": "Poppins",
+                            "value": "Poppins, sans-serif"
+                          },
+                          {
+                            "title": "Source Sans Pro",
+                            "value": "Source Sans Pro, sans-serif"
+                          },
+                          {
+                            "title": "Raleway",
+                            "value": "Raleway, sans-serif"
+                          },
+                          {
+                            "title": "Merriweather",
+                            "value": "Merriweather, serif"
+                          },
+                          {
+                            "title": "Playfair Display",
+                            "value": "Playfair Display, serif"
+                          },
+                          {
+                            "title": "Georgia",
+                            "value": "Georgia, serif"
+                          },
+                          {
+                            "title": "Times New Roman",
+                            "value": "Times New Roman, serif"
+                          },
+                          {
+                            "title": "Arial",
+                            "value": "Arial, sans-serif"
+                          },
+                          {
+                            "title": "Helvetica",
+                            "value": "Helvetica, sans-serif"
+                          },
+                          {
+                            "title": "Verdana",
+                            "value": "Verdana, sans-serif"
+                          },
+                          {
+                            "title": "Tahoma",
+                            "value": "Tahoma, sans-serif"
+                          },
+                          {
+                            "title": "Trebuchet MS",
+                            "value": "Trebuchet MS, sans-serif"
+                          },
+                          {
+                            "title": "Gill Sans",
+                            "value": "Gill Sans, sans-serif"
+                          },
+                          {
+                            "title": "Arial Black",
+                            "value": "Arial Black, sans-serif"
+                          },
+                          {
+                            "title": "Impact",
+                            "value": "Impact, sans-serif"
+                          },
+                          {
+                            "title": "Comic Sans MS",
+                            "value": "Comic Sans MS, cursive"
+                          },
+                          {
+                            "title": "Courier New",
+                            "value": "Courier New, monospace"
+                          },
+                          {
+                            "title": "Lucida Console",
+                            "value": "Lucida Console, monospace"
+                          },
+                          {
+                            "title": "Monaco",
+                            "value": "Monaco, monospace"
+                          },
+                          {
+                            "title": "Fira Code",
+                            "value": "Fira Code, monospace"
+                          },
+                          {
+                            "title": "Source Code Pro",
+                            "value": "Source Code Pro, monospace"
+                          },
+                          {
+                            "title": "Ubuntu",
+                            "value": "Ubuntu, sans-serif"
+                          },
+                          {
+                            "title": "Oswald",
+                            "value": "Oswald, sans-serif"
+                          },
+                          {
+                            "title": "Nunito",
+                            "value": "Nunito, sans-serif"
+                          },
+                          {
+                            "title": "Quicksand",
+                            "value": "Quicksand, sans-serif"
+                          },
+                          {
+                            "title": "Lora",
+                            "value": "Lora, serif"
+                          },
+                          {
+                            "title": "PT Sans",
+                            "value": "PT Sans, sans-serif"
+                          },
+                          {
+                            "title": "Work Sans",
+                            "value": "Work Sans, sans-serif"
+                          },
+                          {
+                            "title": "Karla",
+                            "value": "Karla, sans-serif"
+                          },
+                          {
+                            "title": "DM Sans",
+                            "value": "DM Sans, sans-serif"
+                          },
+                          {
+                            "title": "Plus Jakarta Sans",
+                            "value": "Plus Jakarta Sans, sans-serif"
+                          },
+                          {
+                            "title": "Bebas Neue",
+                            "value": "Bebas Neue, sans-serif"
+                          },
+                          {
+                            "title": "Cabin",
+                            "value": "Cabin, sans-serif"
+                          },
+                          {
+                            "title": "Josefin Sans",
+                            "value": "Josefin Sans, sans-serif"
+                          },
+                          {
+                            "title": "Libre Baskerville",
+                            "value": "Libre Baskerville, serif"
+                          },
+                          {
+                            "title": "Cormorant Garamond",
+                            "value": "Cormorant Garamond, serif"
+                          },
+                          {
+                            "title": "Crimson Text",
+                            "value": "Crimson Text, serif"
+                          },
+                          {
+                            "title": "EB Garamond",
+                            "value": "EB Garamond, serif"
+                          },
+                          {
+                            "title": "Libre Franklin",
+                            "value": "Libre Franklin, sans-serif"
+                          },
+                          {
+                            "title": "Mulish",
+                            "value": "Mulish, sans-serif"
+                          },
+                          {
+                            "title": "Rubik",
+                            "value": "Rubik, sans-serif"
+                          },
+                          {
+                            "title": "Sora",
+                            "value": "Sora, sans-serif"
+                          },
+                          {
+                            "title": "Space Grotesk",
+                            "value": "Space Grotesk, sans-serif"
+                          },
+                          {
+                            "title": "Urbanist",
+                            "value": "Urbanist, sans-serif"
+                          },
+                          {
+                            "title": "Varela Round",
+                            "value": "Varela Round, sans-serif"
+                          }
+                        ]
+                      },
+                      "name": "fontFamily",
+                      "type": "string"
+                    },
+                    {
+                      "options": {
+                        "list": [
+                          {
+                            "title": "12px",
+                            "value": "12px"
+                          },
+                          {
+                            "title": "14px",
+                            "value": "14px"
+                          },
+                          {
+                            "title": "16px",
+                            "value": "16px"
+                          },
+                          {
+                            "title": "18px",
+                            "value": "18px"
+                          },
+                          {
+                            "title": "20px",
+                            "value": "20px"
+                          },
+                          {
+                            "title": "24px",
+                            "value": "24px"
+                          },
+                          {
+                            "title": "28px",
+                            "value": "28px"
+                          },
+                          {
+                            "title": "32px",
+                            "value": "32px"
+                          },
+                          {
+                            "title": "36px",
+                            "value": "36px"
+                          },
+                          {
+                            "title": "48px",
+                            "value": "48px"
+                          },
+                          {
+                            "title": "64px",
+                            "value": "64px"
+                          }
+                        ]
+                      },
+                      "name": "fontSize",
+                      "type": "string"
+                    },
+                    {
+                      "options": {
+                        "list": [
+                          {
+                            "title": "100",
+                            "value": "100"
+                          },
+                          {
+                            "title": "200",
+                            "value": "200"
+                          },
+                          {
+                            "title": "300",
+                            "value": "300"
+                          },
+                          {
+                            "title": "400",
+                            "value": "400"
+                          },
+                          {
+                            "title": "500",
+                            "value": "500"
+                          },
+                          {
+                            "title": "600",
+                            "value": "600"
+                          },
+                          {
+                            "title": "700",
+                            "value": "700"
+                          },
+                          {
+                            "title": "800",
+                            "value": "800"
+                          },
+                          {
+                            "title": "900",
+                            "value": "900"
+                          }
+                        ]
+                      },
+                      "name": "fontWeight",
+                      "type": "string"
+                    },
+                    {
+                      "name": "color",
+                      "type": "string",
+                      "title": "Text Color"
+                    }
+                  ],
+                  "name": "style",
+                  "type": "object",
+                  "title": "Font Style"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Emphasis"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike-through"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "highlight",
+                  "title": "Highlight"
+                }
+              ]
+            },
+            "of": [],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "description": "Important for accessibility and SEO",
+                "name": "alt",
+                "type": "string",
+                "title": "Alt text"
+              }
+            ],
+            "type": "image"
+          },
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "description": "YouTube, Vimeo, or other video URL",
+                "name": "url",
+                "type": "url",
+                "title": "Video URL"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "YouTube",
+                      "value": "youtube"
+                    },
+                    {
+                      "title": "Vimeo",
+                      "value": "vimeo"
+                    },
+                    {
+                      "title": "Custom",
+                      "value": "custom"
+                    }
+                  ]
+                },
+                "name": "platform",
+                "type": "string"
+              },
+              {
+                "name": "caption",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "videoEmbed"
+          },
+          {
+            "fields": [
+              {
+                "description": "Your Google AdSense ad slot ID",
+                "name": "adSlot",
+                "type": "string",
+                "title": "Ad Slot ID"
+              },
+              {
+                "description": "Your Google AdSense publisher ID (ca-pub-xxx)",
+                "name": "adClient",
+                "type": "string",
+                "title": "Ad Client ID"
+              },
+              {
+                "initialValue": 300,
+                "name": "width",
+                "type": "number"
+              },
+              {
+                "initialValue": 250,
+                "name": "height",
+                "type": "number"
+              }
+            ],
+            "type": "object",
+            "name": "adsense",
+            "title": "AdSense Ad"
+          },
+          {
+            "fields": [
+              {
+                "of": [
+                  {
+                    "lists": [
+                      {
+                        "value": "bullet",
+                        "title": "Bulleted list"
+                      },
+                      {
+                        "value": "number",
+                        "title": "Numbered list"
+                      }
+                    ],
+                    "marks": {
+                      "annotations": [
+                        {
+                          "i18nTitleKey": "inputs.portable-text.annotation.link",
+                          "options": {
+                            "modal": {
+                              "type": "popover"
+                            }
+                          },
+                          "fields": [
+                            {
+                              "validation": [
+                                {
+                                  "level": "error",
+                                  "rules": [
+                                    {
+                                      "flag": "uri",
+                                      "constraint": {
+                                        "options": {
+                                          "scheme": [
+                                            "/^http$/",
+                                            "/^https$/",
+                                            "/^tel$/",
+                                            "/^mailto$/"
+                                          ],
+                                          "allowRelative": true,
+                                          "relativeOnly": false,
+                                          "allowCredentials": false
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              ],
+                              "description": "A valid web, email, phone, or relative link.",
+                              "name": "href",
+                              "type": "url",
+                              "title": "Link"
+                            }
+                          ],
+                          "name": "link",
+                          "type": "object"
+                        }
+                      ],
+                      "decorators": [
+                        {
+                          "value": "strong",
+                          "title": "Strong"
+                        },
+                        {
+                          "value": "em",
+                          "title": "Italic"
+                        },
+                        {
+                          "value": "code",
+                          "title": "Code"
+                        },
+                        {
+                          "value": "underline",
+                          "title": "Underline"
+                        },
+                        {
+                          "value": "strike-through",
+                          "title": "Strike"
+                        }
+                      ]
+                    },
+                    "of": [],
+                    "styles": [
+                      {
+                        "value": "normal",
+                        "title": "Normal"
+                      },
+                      {
+                        "value": "h1",
+                        "title": "Heading 1"
+                      },
+                      {
+                        "value": "h2",
+                        "title": "Heading 2"
+                      },
+                      {
+                        "value": "h3",
+                        "title": "Heading 3"
+                      },
+                      {
+                        "value": "h4",
+                        "title": "Heading 4"
+                      },
+                      {
+                        "value": "h5",
+                        "title": "Heading 5"
+                      },
+                      {
+                        "value": "h6",
+                        "title": "Heading 6"
+                      },
+                      {
+                        "value": "blockquote",
+                        "title": "Quote"
+                      }
+                    ],
+                    "type": "block"
+                  }
+                ],
+                "name": "content",
+                "type": "array"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Info",
+                      "value": "info"
+                    },
+                    {
+                      "title": "Warning",
+                      "value": "warning"
+                    },
+                    {
+                      "title": "Success",
+                      "value": "success"
+                    },
+                    {
+                      "title": "Error",
+                      "value": "error"
+                    },
+                    {
+                      "title": "Tip",
+                      "value": "tip"
+                    }
+                  ]
+                },
+                "name": "style",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "callout",
+            "title": "Callout Box"
+          }
+        ],
+        "name": "content",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "description": "Important for accessibility and SEO",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "coverImage",
+        "type": "image"
+      },
+      {
+        "description": "Search Engine Optimization settings for this post",
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "warning",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 60
+                  }
+                ],
+                "message": "Meta titles longer than 60 characters may be truncated in search results"
+              }
+            ],
+            "description": "Override the default page title. Best practice: 50-60 characters, include main keyword at the beginning",
+            "name": "metaTitle",
+            "type": "string"
+          },
+          {
+            "rows": 3,
+            "validation": [
+              {
+                "level": "warning",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ],
+                "message": "Meta descriptions longer than 160 characters may be truncated in search results"
+              }
+            ],
+            "description": "Override the default excerpt. Best practice: 150-160 characters, include keywords and call-to-action",
+            "name": "metaDescription",
+            "type": "text"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "description": "Image shown when sharing on social media (Facebook, Twitter, LinkedIn). Recommended size: 1200x630px",
+            "name": "ogImage",
+            "type": "image",
+            "title": "Open Graph Image"
+          },
+          {
+            "initialValue": false,
+            "description": "⚠️ Enable this to prevent search engines from indexing this page. Use only for draft or private content.",
+            "name": "noIndex",
+            "type": "boolean"
+          },
+          {
+            "options": {
+              "layout": "tags"
+            },
+            "description": "SEO keywords for this post. Add 3-5 relevant keywords separated by commas. Focus on long-tail keywords.",
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "keywords",
+            "type": "array"
+          }
+        ],
+        "name": "seo",
+        "type": "object",
+        "title": "SEO"
+      },
+      {
+        "name": "author",
+        "type": "string"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "categories",
+        "type": "array"
+      }
+    ],
+    "name": "blog",
+    "type": "document",
+    "title": "Blog Post"
+  }
+]
