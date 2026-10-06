@@ -42,9 +42,7 @@
       // - If there are no subscribers, then we log the error to the console and render the error overlay.
       if (errorChannel.subscribers.length) {
         errorChannel.publish({error, params})
-      } else if (error) {
-        // Browsers fire some error events without an error object (a ResizeObserver loop,
-        // a cross-origin "Script error."), and there is nothing useful to show for them.
+      } else {
         console.error(error)
 
         _renderErrorOverlay(error, params)
@@ -270,7 +268,7 @@
     -webkit-font-smoothing: antialiased;
   }
 </style><script src="https://core.sanity-cdn.com/bridge.js" async type="module" data-sanity-core></script>
-</head><body><div id="sanity"></div><script src="/static/sanity-Bth1aMkC.js" type="module"></script><noscript><div class="sanity-app-no-js__root"><div class="sanity-app-no-js__content"><style type="text/css">
+</head><body><div id="sanity"></div><script src="/static/sanity-BkOy2PND.js" type="module"></script><noscript><div class="sanity-app-no-js__root"><div class="sanity-app-no-js__content"><style type="text/css">
 .sanity-app-no-js__root {
   position: absolute;
   top: 0;

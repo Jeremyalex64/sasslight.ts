@@ -45,13 +45,6 @@
       "bucket_name": "sasslight",
     },
   ],
-  "kv_namespaces": [
-    {
-      "binding": "PRODUCTS_KV",
-      "id": "50e2658d97d14c55b1f12bf61749fbf2",
-      "preview_id": "9a5be8239cf94e65b0466590794ebefc",
-    },
-  ],
   "observability": {
     "enabled": true,
   },
