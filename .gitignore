@@ -53,3 +53,4 @@ next-env.d.ts
 # optional: full Wrangler-generated types (~500KB+)
 # Keep the slim hand-written cloudflare-env.d.ts in repo.
 # cloudflare-env.generated.d.ts
+bundled/
