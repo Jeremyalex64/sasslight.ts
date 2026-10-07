@@ -21,13 +21,15 @@
     "@portabletext/react": "^8.0.1",
     "@sanity/client": "^8.5.0",
     "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^5.31.2",
     "@upstash/redis": "^1.34.0",
     "jose": "^6.2.3",
     "next": "^16.2.3",
     "next-sanity": "^13.3.4",
     "react": "^19.1.7",
     "react-dom": "^19.2.8",
-    "resend": "^4.0.0"
+    "resend": "^4.0.0",
+    "sanity": "^5.31.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
