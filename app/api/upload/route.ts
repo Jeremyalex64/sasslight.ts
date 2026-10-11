@@ -15,10 +15,11 @@ export async function POST(request: NextRequest) {
     const fileName = `${Date.now()}-${file.name}`;
 
     // Use Cloudflare R2 binding
-    // @ts-expect-error - Cloudflare R2 binding
-    const r2 = env?.CACHE_BUCKET;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const r2 = (globalThis as any).env?.CACHE_BUCKET;
 
     if (!r2) {
+      console.error("R2 bucket not configured");
       return NextResponse.json(
         { error: "R2 bucket not configured" },
         { status: 500 },
@@ -32,7 +33,18 @@ export async function POST(request: NextRequest) {
     });
 
     // Construct public URL for the R2 bucket
-    const url = `https://pub-${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.dev/${fileName}`;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const accountId = (globalThis as any).env?.CLOUDFLARE_ACCOUNT_ID;
+
+    if (!accountId) {
+      console.error("CLOUDFLARE_ACCOUNT_ID not configured");
+      return NextResponse.json(
+        { error: "CLOUDFLARE_ACCOUNT_ID not configured" },
+        { status: 500 },
+      );
+    }
+
+    const url = `https://pub-${accountId}.r2.dev/${fileName}`;
 
     return NextResponse.json({ url });
   } catch (error) {
