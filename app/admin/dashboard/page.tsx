@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Product } from "@/lib/products";
 
@@ -70,6 +70,7 @@ export default function AdminDashboard() {
               <button
                 onClick={() => setShowAddForm(!showAddForm)}
                 className="bg-amber-600 text-white px-4 py-2 rounded-md hover:bg-amber-700 transition"
+                type="button"
               >
                 {showAddForm ? "Cancel" : "Add Product"}
               </button>
@@ -246,6 +247,10 @@ function AddProductForm({
         });
         if (res.ok) {
           onSuccess();
+        } else {
+          const errorText = await res.text();
+          console.error("Product update failed:", errorText);
+          alert(`Failed to update product: ${errorText}`);
         }
       } else {
         const res = await fetch("/api/products", {
@@ -255,10 +260,17 @@ function AddProductForm({
         });
         if (res.ok) {
           onSuccess();
+        } else {
+          const errorText = await res.text();
+          console.error("Product creation failed:", errorText);
+          alert(`Failed to add product: ${errorText}`);
         }
       }
     } catch (error) {
       console.error("Error saving product:", error);
+      alert(
+        `Error saving product: ${error instanceof Error ? error.message : "Unknown error"}`,
+      );
     }
   };
 

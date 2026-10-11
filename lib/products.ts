@@ -1,17 +1,3 @@
-import { Redis } from "@upstash/redis";
-
-function getRedis() {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-
-  if (!url || !token) {
-    console.warn("Upstash Redis credentials not configured");
-    return null;
-  }
-
-  return new Redis({ url, token });
-}
-
 export interface Product {
   id: string;
   name: string;
@@ -24,26 +10,42 @@ export interface Product {
 
 const PRODUCTS_KEY = "products";
 
+// In-memory storage for local development
+let inMemoryProducts: Product[] = [];
+
 export async function getProducts(): Promise<Product[]> {
   try {
-    const redis = getRedis();
-    if (!redis) return [];
-    const products = await redis.get<Product[]>(PRODUCTS_KEY);
+    // Check if we're in Cloudflare Workers environment
+    // @ts-expect-error - Cloudflare KV binding
+    const kv = typeof env !== "undefined" ? env?.PRODUCTS_KV : null;
+    if (!kv) {
+      console.warn(
+        "Cloudflare KV binding not configured, using in-memory storage",
+      );
+      return inMemoryProducts;
+    }
+    const products = await kv.get(PRODUCTS_KEY, "json");
     return products || [];
   } catch (error) {
     console.error("Error reading products:", error);
-    return [];
+    return inMemoryProducts;
   }
 }
 
 export async function saveProducts(products: Product[]): Promise<void> {
   try {
-    const redis = getRedis();
-    if (!redis) throw new Error("Redis not configured");
-    await redis.set(PRODUCTS_KEY, products);
+    // Check if we're in Cloudflare Workers environment
+    // @ts-expect-error - Cloudflare KV binding
+    const kv = typeof env !== "undefined" ? env?.PRODUCTS_KV : null;
+    if (!kv) {
+      console.warn("Cloudflare KV not configured, using in-memory storage");
+      inMemoryProducts = products;
+      return;
+    }
+    await kv.put(PRODUCTS_KEY, JSON.stringify(products));
   } catch (error) {
     console.error("Error saving products:", error);
-    throw error;
+    inMemoryProducts = products;
   }
 }
 

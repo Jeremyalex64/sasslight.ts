@@ -313,6 +313,55 @@ export const schemaTypes = [
               },
             ],
           },
+          {
+            name: "twoColumn",
+            type: "object",
+            title: "Two Column Layout",
+            fields: [
+              {
+                name: "leftColumn",
+                type: "array",
+                of: [{ type: "block" }],
+                title: "Left Column Content",
+              },
+              {
+                name: "rightColumn",
+                type: "array",
+                of: [{ type: "block" }],
+                title: "Right Column Content",
+              },
+              {
+                name: "ratio",
+                type: "string",
+                title: "Column Ratio",
+                description: "Width ratio between left and right columns",
+                options: {
+                  list: [
+                    { title: "50/50", value: "50-50" },
+                    { title: "60/40", value: "60-40" },
+                    { title: "70/30", value: "70-30" },
+                    { title: "40/60", value: "40-60" },
+                    { title: "30/70", value: "30-70" },
+                  ],
+                },
+                initialValue: "50-50",
+              },
+            ],
+            preview: {
+              select: {
+                leftColumn: "leftColumn",
+                rightColumn: "rightColumn",
+              },
+              prepare({ leftColumn, rightColumn }) {
+                const leftText = leftColumn?.[0]?.children?.[0]?.text || "";
+                const rightText = rightColumn?.[0]?.children?.[0]?.text || "";
+                return {
+                  title: "Two Column Layout",
+                  subtitle: `${leftText.substring(0, 20)}... | ${rightText.substring(0, 20)}...`,
+                };
+              },
+            },
+          },
         ],
       }),
       defineField({
@@ -400,6 +449,18 @@ export const schemaTypes = [
         options: {
           layout: "tags",
         },
+      }),
+      defineField({
+        name: "relatedPosts",
+        title: "Related Posts",
+        type: "array",
+        of: [
+          {
+            type: "reference",
+            to: [{ type: "blog" }],
+          },
+        ],
+        description: "Select related blog posts to display",
       }),
     ],
     preview: {
