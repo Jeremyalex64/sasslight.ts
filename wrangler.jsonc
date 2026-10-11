@@ -21,6 +21,7 @@
   "vars": {
     "NEXT_PUBLIC_SANITY_PROJECT_ID": "uufsl4zl",
     "NEXT_PUBLIC_SANITY_DATASET": "production",
+    "CLOUDFLARE_ACCOUNT_ID": "a0becee0453fbc6a327b66ad01bc049c",
   },
   "assets": {
     "binding": "ASSETS",
