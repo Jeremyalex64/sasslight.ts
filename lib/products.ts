@@ -8,7 +8,7 @@ export interface Product {
   createdAt: string;
 }
 
-const PRODUCTS_KEY = "products";
+const PRODUCTS_KEY = "products.json";
 
 // Lazy-loaded in-memory storage
 let _inMemoryProducts: Product[] | null = null;
@@ -26,14 +26,21 @@ function setInMemoryProducts(products: Product[]): void {
 
 export async function getProducts(): Promise<Product[]> {
   try {
-    // Check if we're in Cloudflare Workers environment
+    // Use R2 for storage (more reliable with OpenNext)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const kv = (globalThis as any).env?.PRODUCTS_KV;
-    if (!kv) {
+    const r2 = (globalThis as any).env?.CACHE_BUCKET;
+    console.log("R2 binding check:", !!r2);
+    if (!r2) {
+      console.warn("R2 binding not found, using in-memory storage");
       return getInMemoryProducts();
     }
-    const products = await kv.get(PRODUCTS_KEY, "json");
-    return products || [];
+    const object = await r2.get(PRODUCTS_KEY);
+    if (!object) {
+      return [];
+    }
+    const text = await object.text();
+    console.log("Products from R2:", text);
+    return JSON.parse(text);
   } catch (error) {
     console.error("Error reading products:", error);
     return getInMemoryProducts();
@@ -42,14 +49,21 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function saveProducts(products: Product[]): Promise<void> {
   try {
-    // Check if we're in Cloudflare Workers environment
+    // Use R2 for storage (more reliable with OpenNext)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const kv = (globalThis as any).env?.PRODUCTS_KV;
-    if (!kv) {
+    const r2 = (globalThis as any).env?.CACHE_BUCKET;
+    console.log("R2 binding check for save:", !!r2);
+    if (!r2) {
+      console.warn("R2 binding not found for save, using in-memory storage");
       setInMemoryProducts(products);
       return;
     }
-    await kv.put(PRODUCTS_KEY, JSON.stringify(products));
+    await r2.put(PRODUCTS_KEY, JSON.stringify(products), {
+      httpMetadata: {
+        contentType: "application/json",
+      },
+    });
+    console.log("Products saved to R2");
   } catch (error) {
     console.error("Error saving products:", error);
     setInMemoryProducts(products);

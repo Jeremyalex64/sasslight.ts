@@ -47,13 +47,6 @@
       "bucket_name": "sasslight2",
     },
   ],
-  "kv_namespaces": [
-    {
-      "binding": "PRODUCTS_KV",
-      "id": "7dc70dabd5484ce0afa4be0e28fb2a08",
-      "remote": true,
-    },
-  ],
   "observability": {
     "enabled": true,
   },
