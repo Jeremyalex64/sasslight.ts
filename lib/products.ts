@@ -1,3 +1,9 @@
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} from "@aws-sdk/client-s3";
+
 export interface Product {
   id: string;
   name: string;
@@ -24,23 +30,52 @@ function setInMemoryProducts(products: Product[]): void {
   _inMemoryProducts = products;
 }
 
+// Initialize S3 client for R2
+function getS3Client() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const accountId =
+    (globalThis as any).env?.CLOUDFLARE_ACCOUNT_ID ||
+    process.env.CLOUDFLARE_ACCOUNT_ID;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const accessKeyId =
+    (globalThis as any).env?.CLOUDFLARE_ACCESS_KEY_ID ||
+    process.env.CLOUDFLARE_ACCESS_KEY_ID;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const secretAccessKey =
+    (globalThis as any).env?.CLOUDFLARE_SECRET_ACCESS_KEY ||
+    process.env.CLOUDFLARE_SECRET_ACCESS_KEY;
+
+  if (!accountId || !accessKeyId || !secretAccessKey) {
+    console.warn("R2 credentials not found, using in-memory storage");
+    return null;
+  }
+
+  return new S3Client({
+    region: "auto",
+    endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
+    credentials: {
+      accessKeyId,
+      secretAccessKey,
+    },
+  });
+}
+
 export async function getProducts(): Promise<Product[]> {
   try {
-    // Use R2 for storage (more reliable with OpenNext)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const r2 = (globalThis as any).env?.CACHE_BUCKET;
-    console.log("R2 binding check:", !!r2);
-    if (!r2) {
-      console.warn("R2 binding not found, using in-memory storage");
+    const s3 = getS3Client();
+    if (!s3) {
       return getInMemoryProducts();
     }
-    const object = await r2.get(PRODUCTS_KEY);
-    if (!object) {
-      return [];
-    }
-    const text = await object.text();
+
+    const command = new GetObjectCommand({
+      Bucket: "sasslight2",
+      Key: PRODUCTS_KEY,
+    });
+
+    const response = await s3.send(command);
+    const text = await response.Body?.transformToString();
     console.log("Products from R2:", text);
-    return JSON.parse(text);
+    return text ? JSON.parse(text) : [];
   } catch (error) {
     console.error("Error reading products:", error);
     return getInMemoryProducts();
@@ -49,20 +84,20 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function saveProducts(products: Product[]): Promise<void> {
   try {
-    // Use R2 for storage (more reliable with OpenNext)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const r2 = (globalThis as any).env?.CACHE_BUCKET;
-    console.log("R2 binding check for save:", !!r2);
-    if (!r2) {
-      console.warn("R2 binding not found for save, using in-memory storage");
+    const s3 = getS3Client();
+    if (!s3) {
       setInMemoryProducts(products);
       return;
     }
-    await r2.put(PRODUCTS_KEY, JSON.stringify(products), {
-      httpMetadata: {
-        contentType: "application/json",
-      },
+
+    const command = new PutObjectCommand({
+      Bucket: "sasslight2",
+      Key: PRODUCTS_KEY,
+      Body: JSON.stringify(products),
+      ContentType: "application/json",
     });
+
+    await s3.send(command);
     console.log("Products saved to R2");
   } catch (error) {
     console.error("Error saving products:", error);
