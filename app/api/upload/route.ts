@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,43 +10,39 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    // Get bindings via OpenNext's Cloudflare context
+    const { env } = getCloudflareContext();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const r2 = (env as any).CACHE_BUCKET;
+    if (!r2) {
+      console.error("CACHE_BUCKET binding not found");
+      return NextResponse.json(
+        { error: "R2 bucket binding not configured" },
+        { status: 500 },
+      );
+    }
+
+    // Read file as ArrayBuffer (no Buffer needed)
+    const bytes = await file.arrayBuffer();
     const fileName = `${Date.now()}-${file.name}`;
 
-    // Use Cloudflare R2 binding
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const r2 = (globalThis as any).env?.CACHE_BUCKET;
-
-    if (!r2) {
-      console.error("R2 bucket not configured");
-      return NextResponse.json(
-        { error: "R2 bucket not configured" },
-        { status: 500 },
-      );
-    }
-
-    await r2.put(fileName, buffer, {
-      httpMetadata: {
-        contentType: file.type,
-      },
+    // Upload to R2
+    await r2.put(fileName, bytes, {
+      httpMetadata: { contentType: file.type },
     });
 
-    // Construct public URL for the R2 bucket
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const accountId = (globalThis as any).env?.CLOUDFLARE_ACCOUNT_ID;
-
-    if (!accountId) {
-      console.error("CLOUDFLARE_ACCOUNT_ID not configured");
-      return NextResponse.json(
-        { error: "CLOUDFLARE_ACCOUNT_ID not configured" },
-        { status: 500 },
-      );
+    // Build a public URL using the R2_PUBLIC_URL var
+    const publicBase = (env as any).R2_PUBLIC_URL;
+    if (!publicBase) {
+      return NextResponse.json({
+        fileName,
+        warning:
+          "Upload succeeded but R2_PUBLIC_URL is not set. Configure it in wrangler.toml.",
+      });
     }
 
-    const url = `https://pub-${accountId}.r2.dev/${fileName}`;
-
+    const url = `${publicBase.replace(/\/$/, "")}/${fileName}`;
     return NextResponse.json({ url });
   } catch (error) {
     console.error("Error uploading file:", error);

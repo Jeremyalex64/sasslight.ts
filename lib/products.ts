@@ -10,42 +10,49 @@ export interface Product {
 
 const PRODUCTS_KEY = "products";
 
-// In-memory storage for local development
-let inMemoryProducts: Product[] = [];
+// Lazy-loaded in-memory storage
+let _inMemoryProducts: Product[] | null = null;
+
+function getInMemoryProducts(): Product[] {
+  if (_inMemoryProducts === null) {
+    _inMemoryProducts = [];
+  }
+  return _inMemoryProducts;
+}
+
+function setInMemoryProducts(products: Product[]): void {
+  _inMemoryProducts = products;
+}
 
 export async function getProducts(): Promise<Product[]> {
   try {
     // Check if we're in Cloudflare Workers environment
-    // @ts-expect-error - Cloudflare KV binding
-    const kv = typeof env !== "undefined" ? env?.PRODUCTS_KV : null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const kv = (globalThis as any).env?.PRODUCTS_KV;
     if (!kv) {
-      console.warn(
-        "Cloudflare KV binding not configured, using in-memory storage",
-      );
-      return inMemoryProducts;
+      return getInMemoryProducts();
     }
     const products = await kv.get(PRODUCTS_KEY, "json");
     return products || [];
   } catch (error) {
     console.error("Error reading products:", error);
-    return inMemoryProducts;
+    return getInMemoryProducts();
   }
 }
 
 export async function saveProducts(products: Product[]): Promise<void> {
   try {
     // Check if we're in Cloudflare Workers environment
-    // @ts-expect-error - Cloudflare KV binding
-    const kv = typeof env !== "undefined" ? env?.PRODUCTS_KV : null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const kv = (globalThis as any).env?.PRODUCTS_KV;
     if (!kv) {
-      console.warn("Cloudflare KV not configured, using in-memory storage");
-      inMemoryProducts = products;
+      setInMemoryProducts(products);
       return;
     }
     await kv.put(PRODUCTS_KEY, JSON.stringify(products));
   } catch (error) {
     console.error("Error saving products:", error);
-    inMemoryProducts = products;
+    setInMemoryProducts(products);
   }
 }
 

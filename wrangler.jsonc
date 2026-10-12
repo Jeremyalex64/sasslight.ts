@@ -22,6 +22,7 @@
     "NEXT_PUBLIC_SANITY_PROJECT_ID": "uufsl4zl",
     "NEXT_PUBLIC_SANITY_DATASET": "production",
     "CLOUDFLARE_ACCOUNT_ID": "a0becee0453fbc6a327b66ad01bc049c",
+    "R2_PUBLIC_URL": "https://pub-ce20785b75344a2485765616a6418c35.r2.dev",
   },
   "assets": {
     "binding": "ASSETS",
@@ -39,11 +40,18 @@
   "r2_buckets": [
     {
       "binding": "CACHE_BUCKET",
-      "bucket_name": "sasslight",
+      "bucket_name": "sasslight2",
     },
     {
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
-      "bucket_name": "sasslight",
+      "bucket_name": "sasslight2",
+    },
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "PRODUCTS_KV",
+      "id": "7dc70dabd5484ce0afa4be0e28fb2a08",
+      "remote": true,
     },
   ],
   "observability": {
