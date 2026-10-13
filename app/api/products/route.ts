@@ -21,10 +21,18 @@ export async function POST(request: NextRequest) {
       image: string;
       affiliateLink: string;
       price: string;
+      category: string;
     };
-    const { name, description, image, affiliateLink, price } = body;
+    const { name, description, image, affiliateLink, price, category } = body;
 
-    if (!name || !description || !image || !affiliateLink || !price) {
+    if (
+      !name ||
+      !description ||
+      !image ||
+      !affiliateLink ||
+      !price ||
+      !category
+    ) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 },
@@ -37,6 +45,7 @@ export async function POST(request: NextRequest) {
       image,
       affiliateLink,
       price,
+      category,
     });
     return NextResponse.json(newProduct, { status: 201 });
   } catch {

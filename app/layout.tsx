@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title:
     "Sasslight - Affiliate Marketing Store | Best Deals & Exclusive Products",
   description:
-    "Discover amazing affiliate products and exclusive deals at Sasslight. Your trusted source for quality digital products, software, courses, and more at unbeatable prices.",
+    "Discover amazing Digital/Software products and exclusive deals at Sasslight. Your trusted source for quality digital products, software, courses, and more at unbeatable prices.",
   keywords: [
     "affiliate marketing",
     "digital products",

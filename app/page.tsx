@@ -19,6 +19,10 @@ const ProductsList = dynamic(() => import("./components/ProductsList"), {
   ),
 });
 
+const CategoryFilter = dynamic(() => import("./components/CategoryFilter"), {
+  ssr: true,
+});
+
 export const revalidate = 1800; // Revalidate every 30 minutes
 
 export const metadata: Metadata = {
@@ -82,6 +86,7 @@ export default function Home() {
               courses, and exclusive deals at unbeatable prices.
             </p>
           </div>
+          <CategoryFilter />
           <ProductsList />
         </div>
       </main>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Product } from "@/lib/products";
+import { seoCategories } from "@/lib/seo-categories";
 
 export default function AdminDashboard() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -188,6 +189,7 @@ function AddProductForm({
     image: "",
     affiliateLink: "",
     price: "",
+    category: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploadMethod, setUploadMethod] = useState<"url" | "file">("url");
@@ -200,6 +202,7 @@ function AddProductForm({
         image: editingProduct.image || "",
         affiliateLink: editingProduct.affiliateLink || "",
         price: editingProduct.price || "",
+        category: editingProduct.category || "",
       });
     }
   }, [editingProduct]);
@@ -384,6 +387,26 @@ function AddProductForm({
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900"
           required
         />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-900 mb-1">
+          Category
+        </label>
+        <select
+          value={formData.category || ""}
+          onChange={(e) =>
+            setFormData({ ...formData, category: e.target.value })
+          }
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900"
+          required
+        >
+          <option value="">Select a category</option>
+          {seoCategories.map((cat) => (
+            <option key={cat.slug} value={cat.slug}>
+              {cat.name}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="flex gap-2">
         <button

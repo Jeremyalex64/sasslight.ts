@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { seoCategories } from "@/lib/seo-categories";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
@@ -56,6 +58,46 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
+            <div className="relative">
+              <button
+                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                className={`font-medium transition flex items-center gap-1 ${
+                  pathname.startsWith("/categories")
+                    ? "text-amber-700"
+                    : "text-gray-700 hover:text-amber-700"
+                }`}
+                aria-label="Browse product categories"
+              >
+                Categories
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              {isCategoriesOpen && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                  {seoCategories.map((cat) => (
+                    <Link
+                      key={cat.slug}
+                      href={`/categories/${cat.slug}`}
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-amber-700 transition"
+                      onClick={() => setIsCategoriesOpen(false)}
+                    >
+                      {cat.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <Link
               href="/"
               className={`font-medium transition ${
@@ -136,18 +178,39 @@ export default function Navigation() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden py-4 space-y-1">
-            <Link
-              href="/"
-              className={`block font-medium transition py-3 px-4 rounded-md active:bg-gray-100 ${
-                isActive("/")
-                  ? "text-amber-700 bg-amber-50"
-                  : "text-gray-700 hover:text-amber-700 hover:bg-gray-50"
-              }`}
-              onClick={() => setIsOpen(false)}
-              aria-label="Browse our curated affiliate products and exclusive deals"
-            >
-              Products
-            </Link>
+            <div className="px-4 py-2">
+              <p className="text-sm font-semibold text-gray-500 mb-2">
+                Categories
+              </p>
+              {seoCategories.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/categories/${cat.slug}`}
+                  className={`block py-2 px-4 rounded-md transition ${
+                    pathname === `/categories/${cat.slug}`
+                      ? "text-amber-700 bg-amber-50"
+                      : "text-gray-700 hover:text-amber-700 hover:bg-gray-50"
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {cat.name}
+                </Link>
+              ))}
+            </div>
+            <div className="border-t border-gray-200 pt-2">
+              <Link
+                href="/"
+                className={`block font-medium transition py-3 px-4 rounded-md active:bg-gray-100 ${
+                  isActive("/")
+                    ? "text-amber-700 bg-amber-50"
+                    : "text-gray-700 hover:text-amber-700 hover:bg-gray-50"
+                }`}
+                onClick={() => setIsOpen(false)}
+                aria-label="Browse our curated affiliate products and exclusive deals"
+              >
+                Products
+              </Link>
+            </div>
             <Link
               href="/about"
               className={`block font-medium transition py-3 px-4 rounded-md active:bg-gray-100 ${
