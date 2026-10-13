@@ -38,12 +38,12 @@ function getS3Client() {
     process.env.CLOUDFLARE_ACCOUNT_ID;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const accessKeyId =
-    (globalThis as any).env?.CLOUDFLARE_ACCESS_KEY_ID ||
-    process.env.CLOUDFLARE_ACCESS_KEY_ID;
+    (globalThis as any).env?.R2_API_ACCESS_KEY_ID ||
+    process.env.R2_API_ACCESS_KEY_ID;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const secretAccessKey =
-    (globalThis as any).env?.CLOUDFLARE_SECRET_ACCESS_KEY ||
-    process.env.CLOUDFLARE_SECRET_ACCESS_KEY;
+    (globalThis as any).env?.R2_API_SECRET_ACCESS_KEY ||
+    process.env.R2_API_SECRET_ACCESS_KEY;
 
   if (!accountId || !accessKeyId || !secretAccessKey) {
     console.warn("R2 credentials not found, using in-memory storage");
