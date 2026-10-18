@@ -132,6 +132,7 @@ export default function ProductsList() {
                       fetchPriority={index === 0 ? "high" : "auto"}
                       placeholder="blur"
                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAP//////////////////////////////////////wAALCAACAgBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACv/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8AT//Z"
+                      quality={75}
                     />
                   </div>
                 )}

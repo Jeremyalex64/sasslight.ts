@@ -15,7 +15,7 @@ const ProductsList = dynamic(() => import("./components/ProductsList"), {
   ),
 });
 
-export const revalidate = 1800; // Revalidate every 30 minutes
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export const metadata: Metadata = {
   title:
