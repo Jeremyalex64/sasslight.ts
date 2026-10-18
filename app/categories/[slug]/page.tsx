@@ -3,12 +3,10 @@ import dynamic from "next/dynamic";
 import { seoCategories } from "@/lib/seo-categories";
 
 const Navigation = dynamic(() => import("@/components/Navigation"), {
-  ssr: true,
   loading: () => <nav className="h-16 bg-white shadow-sm" />,
 });
 
 const Footer = dynamic(() => import("@/components/Footer"), {
-  ssr: true,
   loading: () => <footer className="h-16 bg-gray-900" />,
 });
 
@@ -20,12 +18,7 @@ const ProductsList = dynamic(() => import("../../components/ProductsList"), {
   ),
 });
 
-const CategoryFilter = dynamic(
-  () => import("../../components/CategoryFilter"),
-  {
-    ssr: true,
-  },
-);
+const CategoryFilter = dynamic(() => import("../../components/CategoryFilter"));
 
 export async function generateMetadata({
   params,
@@ -82,7 +75,7 @@ export default async function CategoryPage({
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex-1" style={{ minHeight: "600px" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">

@@ -67,6 +67,7 @@ export default function ProductsList() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full px-4 py-3 text-base sm:text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900"
+          style={{ minWidth: "280px" }}
         />
       </div>
 
@@ -76,7 +77,7 @@ export default function ProductsList() {
             <div
               key={index}
               className="bg-white rounded-lg shadow-md overflow-hidden"
-              style={{ aspectRatio: "auto" }}
+              style={{ minHeight: "320px" }}
             >
               <div
                 className="w-full h-40 sm:h-48 bg-gray-200 animate-pulse"
@@ -106,6 +107,11 @@ export default function ProductsList() {
               <div
                 key={product.id}
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition active:scale-[0.98]"
+                style={{
+                  minHeight: "320px",
+                  contain: "layout style paint",
+                  contentVisibility: "auto",
+                }}
               >
                 {product.image && (
                   <div

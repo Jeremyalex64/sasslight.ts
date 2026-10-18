@@ -86,6 +86,11 @@ export default function RootLayout({
           as="image"
           type="image/png"
         />
+        <link
+          rel="preload"
+          href="/_next/static/css/app/layout.css"
+          as="style"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

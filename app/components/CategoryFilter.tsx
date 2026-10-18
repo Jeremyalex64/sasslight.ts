@@ -10,7 +10,7 @@ export default function CategoryFilter() {
   const currentCategory = pathname.match(/^\/categories\/([^\/]+)$/)?.[1];
 
   return (
-    <div className="mb-6 sm:mb-8">
+    <div className="mb-6 sm:mb-8" style={{ minHeight: "80px" }}>
       <h3 className="text-sm font-semibold text-gray-700 mb-3">
         Filter by Category
       </h3>
