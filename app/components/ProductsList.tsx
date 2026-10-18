@@ -76,7 +76,7 @@ export default function ProductsList() {
 
       {isLoading ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
-          {Array.from({ length: 8 }).map((_, index) => (
+          {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={index}
               className="bg-white rounded-lg shadow-md overflow-hidden"
@@ -130,6 +130,8 @@ export default function ProductsList() {
                       loading={index === 0 ? "eager" : "lazy"}
                       priority={index === 0}
                       fetchPriority={index === 0 ? "high" : "auto"}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAP//////////////////////////////////////wAALCAACAgBAREA/8QAFAABAAAAAAAAAAAAAAAAAAAACv/EABQQAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQEAAD8AT//Z"
                     />
                   </div>
                 )}

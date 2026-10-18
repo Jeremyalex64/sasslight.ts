@@ -1,9 +1,7 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
-
-const Navigation = dynamic(() => import("@/components/Navigation"), {
-  loading: () => <nav className="h-16 bg-white shadow-sm" />,
-});
+import Navigation from "@/components/Navigation";
+import CategoryFilter from "./components/CategoryFilter";
 
 const Footer = dynamic(() => import("@/components/Footer"), {
   loading: () => <footer className="h-16 bg-gray-900" />,
@@ -16,8 +14,6 @@ const ProductsList = dynamic(() => import("./components/ProductsList"), {
     </div>
   ),
 });
-
-const CategoryFilter = dynamic(() => import("./components/CategoryFilter"));
 
 export const revalidate = 1800; // Revalidate every 30 minutes
 
