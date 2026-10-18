@@ -50,6 +50,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  themeColor: "#d97706",
 };
 
 export default function RootLayout({
@@ -71,6 +72,10 @@ export default function RootLayout({
     <html lang="en" className="h-full antialiased">
       <head>
         <link rel="icon" href="/sasslight-logo.png" type="image/png" />
+        <link
+          rel="preconnect"
+          href="https://pub-ce20785b75344a2485765616a6418c35.r2.dev"
+        />
         <link
           rel="dns-prefetch"
           href="https://pub-ce20785b75344a2485765616a6418c35.r2.dev"

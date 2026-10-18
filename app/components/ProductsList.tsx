@@ -76,8 +76,12 @@ export default function ProductsList() {
             <div
               key={index}
               className="bg-white rounded-lg shadow-md overflow-hidden"
+              style={{ aspectRatio: "auto" }}
             >
-              <div className="w-full h-40 sm:h-48 bg-gray-200 animate-pulse" />
+              <div
+                className="w-full h-40 sm:h-48 bg-gray-200 animate-pulse"
+                style={{ aspectRatio: "16/10" }}
+              />
               <div className="p-3 sm:p-6">
                 <div className="h-6 sm:h-8 bg-gray-200 rounded animate-pulse mb-2" />
                 <div className="h-4 sm:h-5 bg-gray-200 rounded animate-pulse mb-3 sm:mb-4" />
@@ -104,7 +108,10 @@ export default function ProductsList() {
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition active:scale-[0.98]"
               >
                 {product.image && (
-                  <div className="relative w-full h-40 sm:h-48">
+                  <div
+                    className="relative w-full h-40 sm:h-48"
+                    style={{ aspectRatio: "16/10" }}
+                  >
                     <Image
                       src={product.image}
                       alt={product.name}

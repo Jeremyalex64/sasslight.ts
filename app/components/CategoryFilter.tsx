@@ -11,11 +11,13 @@ export default function CategoryFilter() {
 
   return (
     <div className="mb-6 sm:mb-8">
-      <h3 className="text-sm font-semibold text-gray-700 mb-3">Filter by Category</h3>
+      <h3 className="text-sm font-semibold text-gray-700 mb-3">
+        Filter by Category
+      </h3>
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => router.push("/")}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition ${
+          className={`px-4 py-2 rounded-full text-sm font-medium transition cursor-pointer ${
             !currentCategory
               ? "bg-amber-600 text-white"
               : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
@@ -27,7 +29,7 @@ export default function CategoryFilter() {
           <button
             key={cat.slug}
             onClick={() => router.push(`/categories/${cat.slug}`)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition ${
+            className={`px-4 py-2 rounded-full text-sm font-medium transition cursor-pointer ${
               currentCategory === cat.slug
                 ? "bg-amber-600 text-white"
                 : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
