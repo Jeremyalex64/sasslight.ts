@@ -11,7 +11,7 @@ export interface Product {
   image: string;
   affiliateLink: string;
   price: string;
-  category: string;
+  categories: string[];
   createdAt: string;
 }
 

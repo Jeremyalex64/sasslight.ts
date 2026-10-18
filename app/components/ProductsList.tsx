@@ -38,7 +38,9 @@ export default function ProductsList() {
   // Filter by category if on a category page
   const categorySlug = pathname.match(/^\/categories\/([^\/]+)$/)?.[1];
   const filteredByCategory = categorySlug
-    ? products.filter((p) => p.category === categorySlug)
+    ? products.filter(
+        (p) => p.categories && p.categories.includes(categorySlug),
+      )
     : products;
 
   const filteredProducts = filteredByCategory.filter((product) =>
@@ -127,6 +129,7 @@ export default function ProductsList() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                       loading={index === 0 ? "eager" : "lazy"}
                       priority={index === 0}
+                      fetchPriority={index === 0 ? "high" : "auto"}
                     />
                   </div>
                 )}

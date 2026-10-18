@@ -25,9 +25,9 @@ export async function POST(request: NextRequest) {
       image: string;
       affiliateLink: string;
       price: string;
-      category: string;
+      categories: string[];
     };
-    const { name, description, image, affiliateLink, price, category } = body;
+    const { name, description, image, affiliateLink, price, categories } = body;
 
     if (
       !name ||
@@ -35,7 +35,8 @@ export async function POST(request: NextRequest) {
       !image ||
       !affiliateLink ||
       !price ||
-      !category
+      !categories ||
+      categories.length === 0
     ) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -49,7 +50,7 @@ export async function POST(request: NextRequest) {
       image,
       affiliateLink,
       price,
-      category,
+      categories,
     });
     return NextResponse.json(newProduct, { status: 201 });
   } catch {

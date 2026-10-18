@@ -91,6 +91,11 @@ export default function RootLayout({
           href="/_next/static/css/app/layout.css"
           as="style"
         />
+        <link
+          rel="preload"
+          href="/_next/static/chunks/main-app.js"
+          as="script"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

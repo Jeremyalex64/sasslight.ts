@@ -189,7 +189,7 @@ function AddProductForm({
     image: "",
     affiliateLink: "",
     price: "",
-    category: "",
+    categories: [] as string[],
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploadMethod, setUploadMethod] = useState<"url" | "file">("url");
@@ -202,7 +202,7 @@ function AddProductForm({
         image: editingProduct.image || "",
         affiliateLink: editingProduct.affiliateLink || "",
         price: editingProduct.price || "",
-        category: editingProduct.category || "",
+        categories: editingProduct.categories || [],
       });
     }
   }, [editingProduct]);
@@ -259,7 +259,11 @@ function AddProductForm({
         const res = await fetch("/api/products", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...formData, image: imageUrl }),
+          body: JSON.stringify({
+            ...formData,
+            image: imageUrl,
+            categories: formData.categories,
+          }),
         });
         if (res.ok) {
           onSuccess();
@@ -389,24 +393,40 @@ function AddProductForm({
         />
       </div>
       <div>
-        <label className="block text-sm font-medium text-gray-900 mb-1">
-          Category
+        <label className="block text-sm font-medium text-gray-900 mb-2">
+          Categories
         </label>
-        <select
-          value={formData.category || ""}
-          onChange={(e) =>
-            setFormData({ ...formData, category: e.target.value })
-          }
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900"
-          required
-        >
-          <option value="">Select a category</option>
+        <div className="space-y-2">
           {seoCategories.map((cat) => (
-            <option key={cat.slug} value={cat.slug}>
-              {cat.name}
-            </option>
+            <label
+              key={cat.slug}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                value={cat.slug}
+                checked={formData.categories.includes(cat.slug)}
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setFormData({
+                      ...formData,
+                      categories: [...formData.categories, cat.slug],
+                    });
+                  } else {
+                    setFormData({
+                      ...formData,
+                      categories: formData.categories.filter(
+                        (c) => c !== cat.slug,
+                      ),
+                    });
+                  }
+                }}
+                className="w-4 h-4 text-amber-600 border-gray-300 rounded focus:ring-amber-500"
+              />
+              <span className="text-gray-700">{cat.name}</span>
+            </label>
           ))}
-        </select>
+        </div>
       </div>
       <div className="flex gap-2">
         <button
