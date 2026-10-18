@@ -60,6 +60,7 @@ export default function ProductsList() {
 
   return (
     <div>
+      <h2 className="sr-only">Products</h2>
       <div className="mb-6 sm:mb-8 max-w-md mx-auto">
         <input
           type="text"

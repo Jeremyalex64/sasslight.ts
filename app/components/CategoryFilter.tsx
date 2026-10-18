@@ -11,9 +11,9 @@ export default function CategoryFilter() {
 
   return (
     <div className="mb-6 sm:mb-8" style={{ minHeight: "80px" }}>
-      <h3 className="text-sm font-semibold text-gray-700 mb-3">
+      <h2 className="text-sm font-semibold text-gray-700 mb-3">
         Filter by Category
-      </h3>
+      </h2>
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => router.push("/")}
