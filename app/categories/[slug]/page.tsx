@@ -30,9 +30,10 @@ const CategoryFilter = dynamic(
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const category = seoCategories.find((c) => c.slug === params.slug);
+  const { slug } = await params;
+  const category = seoCategories.find((c) => c.slug === slug);
   if (!category) {
     return {
       title: "Category Not Found",
@@ -46,13 +47,18 @@ export async function generateMetadata({
     openGraph: {
       title: `${category.name} - Sasslight`,
       description: `Discover ${category.primaryKeyword} and ${category.keywords.slice(0, 3).join(", ")}. Your trusted source for quality affiliate products and exclusive deals.`,
-      url: `https://sasslight.com/categories/${params.slug}`,
+      url: `https://sasslight.com/categories/${slug}`,
     },
   };
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const category = seoCategories.find((c) => c.slug === params.slug);
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const category = seoCategories.find((c) => c.slug === slug);
 
   if (!category) {
     return (

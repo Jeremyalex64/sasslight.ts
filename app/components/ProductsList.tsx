@@ -11,15 +11,19 @@ export default function ProductsList() {
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
 
   const fetchProducts = useCallback(async () => {
+    setIsLoading(true);
     try {
       const res = await fetch("/api/products");
       const data = (await res.json()) as Product[];
       setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -66,7 +70,23 @@ export default function ProductsList() {
         />
       </div>
 
-      {products.length === 0 ? (
+      {isLoading ? (
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md overflow-hidden"
+            >
+              <div className="w-full h-40 sm:h-48 bg-gray-200 animate-pulse" />
+              <div className="p-3 sm:p-6">
+                <div className="h-6 sm:h-8 bg-gray-200 rounded animate-pulse mb-2" />
+                <div className="h-4 sm:h-5 bg-gray-200 rounded animate-pulse mb-3 sm:mb-4" />
+                <div className="h-4 sm:h-5 bg-gray-200 rounded animate-pulse w-2/3" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : products.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-gray-500 text-base sm:text-lg">
             No products available yet.
