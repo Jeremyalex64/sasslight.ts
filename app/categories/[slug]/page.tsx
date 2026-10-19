@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import { seoCategories } from "@/lib/seo-categories";
 import Navigation from "@/components/Navigation";
-import CategoryFilter from "../../components/CategoryFilter";
-import ProductsList from "../../components/ProductsList";
 import Footer from "@/components/Footer";
+import CategoryContent from "../CategoryContent";
 
 export async function generateMetadata({
   params,
@@ -71,8 +70,7 @@ export default async function CategoryPage({
               {category.keywords.slice(0, 3).join(", ")}
             </p>
           </div>
-          <CategoryFilter />
-          <ProductsList />
+          <CategoryContent initialCategory={slug} />
         </div>
       </main>
       <Footer />
