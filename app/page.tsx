@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import Navigation from "@/components/Navigation";
-import CategoryFilter from "./components/CategoryFilter";
-import ProductsList from "./components/ProductsList";
 import Footer from "@/components/Footer";
+import HomeContent from "./HomeContent";
 
 export const revalidate = 300; // Revalidate every 5 minutes
 
@@ -15,26 +14,16 @@ export const metadata: Metadata = {
     "affiliate marketing",
     "buy digital products",
     "digital products",
-    "online courses",
     "software deals",
-    "exclusive offers",
-    "best deals",
-    "Sasslight",
-    "affiliate store",
-    "discount products",
+    "online courses",
+    "best affiliate products",
   ],
-  authors: [{ name: "Sasslight" }],
-  metadataBase: new URL("https://sasslight.com"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Sasslight - Affiliate Marketing Store",
     description:
       "Your trusted source for quality affiliate products and exclusive deals",
     type: "website",
-    url: "https://sasslight.com",
-    siteName: "Sasslight",
+    url: "https://sasslight.jeremyalex64.workers.dev",
     images: [
       {
         url: "https://sasslight.com/sasslight-logo.png",
@@ -52,7 +41,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navigation />
@@ -63,12 +52,11 @@ export default function Home() {
               Discover Amazing Digital Products
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              Your trusted source for quality digital products, software,
-              courses, and exclusive deals at unbeatable prices.
+              Browse our curated collection of premium digital products,
+              software, courses, and exclusive deals at unbeatable prices.
             </p>
           </div>
-          <CategoryFilter />
-          <ProductsList />
+          <HomeContent />
         </div>
       </main>
       <Footer />

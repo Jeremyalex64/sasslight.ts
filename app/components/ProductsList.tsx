@@ -3,15 +3,19 @@
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { Product } from "@/lib/products";
-import { usePathname } from "next/navigation";
 
 const PRODUCTS_PER_PAGE = 20;
 
-export default function ProductsList() {
+interface ProductsListProps {
+  categoryFilter?: string | null;
+}
+
+export default function ProductsList({
+  categoryFilter,
+}: ProductsListProps = {}) {
   const [products, setProducts] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const pathname = usePathname();
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -29,13 +33,12 @@ export default function ProductsList() {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchQuery, pathname]);
+  }, [searchQuery, categoryFilter]);
 
-  // Filter by category if on a category page
-  const categorySlug = pathname.match(/^\/categories\/([^\/]+)$/)?.[1];
-  const filteredByCategory = categorySlug
+  // Filter by category using the prop instead of pathname
+  const filteredByCategory = categoryFilter
     ? products.filter(
-        (p) => p.categories && p.categories.includes(categorySlug),
+        (p) => p.categories && p.categories.includes(categoryFilter),
       )
     : products;
 

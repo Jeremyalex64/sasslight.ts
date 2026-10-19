@@ -1,14 +1,16 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
 import { seoCategories } from "@/lib/seo-categories";
 
-export default function CategoryFilter() {
-  const pathname = usePathname();
-  const router = useRouter();
+interface CategoryFilterProps {
+  onCategoryChange: (category: string | null) => void;
+  selectedCategory: string | null;
+}
 
-  const currentCategory = pathname.match(/^\/categories\/([^\/]+)$/)?.[1];
-
+export default function CategoryFilter({
+  onCategoryChange,
+  selectedCategory,
+}: CategoryFilterProps) {
   return (
     <div className="mb-6 sm:mb-8" style={{ minHeight: "80px" }}>
       <h2 className="text-sm font-semibold text-gray-700 mb-3">
@@ -16,9 +18,9 @@ export default function CategoryFilter() {
       </h2>
       <div className="flex flex-wrap gap-2">
         <button
-          onClick={() => router.push("/")}
+          onClick={() => onCategoryChange(null)}
           className={`px-4 py-2 rounded-full text-sm font-medium cursor-pointer whitespace-nowrap ${
-            !currentCategory
+            !selectedCategory
               ? "bg-amber-600 text-white"
               : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
           }`}
@@ -29,9 +31,9 @@ export default function CategoryFilter() {
         {seoCategories.map((cat) => (
           <button
             key={cat.slug}
-            onClick={() => router.push(`/categories/${cat.slug}`)}
+            onClick={() => onCategoryChange(cat.slug)}
             className={`px-4 py-2 rounded-full text-sm font-medium cursor-pointer whitespace-nowrap ${
-              currentCategory === cat.slug
+              selectedCategory === cat.slug
                 ? "bg-amber-600 text-white"
                 : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
             }`}
