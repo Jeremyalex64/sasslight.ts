@@ -4,11 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import dynamic from "next/dynamic";
 import PortableText from "@/components/PortableText";
-import {
-  getPostBySlug,
-  getPostSlugs,
-  getRelatedPosts,
-} from "@/sanity/queries";
+import { getPostBySlug, getPostSlugs, getRelatedPosts } from "@/sanity/queries";
 import { urlFor } from "@/sanity/image-url";
 
 const Navigation = dynamic(() => import("@/components/Navigation"), {
@@ -54,11 +50,22 @@ export async function generateMetadata({
     description,
     keywords: post.seo?.keywords,
     robots: post.seo?.noIndex ? { index: false, follow: false } : undefined,
+    alternates: {
+      canonical: `/blogs/${slug}`,
+    },
     openGraph: {
       title,
       description,
       type: "article",
       publishedTime: post.publishedAt,
+      url: `https://sasslight.jeremyalex64.workers.dev/blogs/${slug}`,
+      siteName: "Sasslight",
+      images: ogImage ? [urlFor(ogImage).width(1200).height(630).url()] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
       images: ogImage ? [urlFor(ogImage).width(1200).height(630).url()] : [],
     },
   };

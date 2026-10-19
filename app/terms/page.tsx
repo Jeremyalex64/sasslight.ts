@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title: "Terms and Conditions - Sasslight",
   description:
     "Read Sasslight's terms and conditions to understand your rights and responsibilities when using our affiliate marketing platform.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function Terms() {

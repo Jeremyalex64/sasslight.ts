@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Block admin and non-SEO pages
+Disallow: /admin
+Disallow: /studio
+Disallow: /api
+
+# Block privacy and terms (not needed for SEO)
+Disallow: /privacy
+Disallow: /terms
+
+# Allow important pages
+Allow: /categories
+Allow: /blogs
+Allow: /about
+Allow: /contact
+
+# Sitemap
+Sitemap: https://sasslight.jeremyalex64.workers.dev/sitemap.xml

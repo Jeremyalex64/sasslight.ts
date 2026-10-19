@@ -20,9 +20,26 @@ const ContactForm = dynamic(() => import("../components/ContactForm"), {
 });
 
 export const metadata: Metadata = {
-  title: "Contact Us - Sasslight",
+  title: "Contact Us - Sasslight Affiliate Marketing Store",
   description:
-    "Get in touch with the Sasslight team. We'd love to hear from you about our affiliate products and services.",
+    "Get in touch with the Sasslight team for questions about our affiliate products, software deals, and exclusive offers. We're here to help you find the best digital products.",
+  keywords: [
+    "contact sasslight",
+    "affiliate support",
+    "customer service",
+    "digital products help",
+    "software deals support",
+  ],
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact Us - Sasslight",
+    description:
+      "Get in touch with the Sasslight team for questions about our affiliate products and services",
+    url: "https://sasslight.jeremyalex64.workers.dev/contact",
+    type: "website",
+  },
 };
 
 export default function Contact() {

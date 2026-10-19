@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "discount products",
   ],
   authors: [{ name: "Sasslight" }],
-  metadataBase: new URL("https://sasslight.com"),
+  metadataBase: new URL("https://sasslight.jeremyalex64.workers.dev"),
   alternates: {
     canonical: "/",
   },
@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     description:
       "Your trusted source for quality affiliate products and exclusive deals",
     type: "website",
-    url: "https://sasslight.com",
+    url: "https://sasslight.jeremyalex64.workers.dev",
     siteName: "Sasslight",
     images: [
       {
-        url: "https://sasslight.com/sasslight-logo.png",
+        url: "https://sasslight.jeremyalex64.workers.dev/sasslight-logo.png",
         width: 1200,
         height: 630,
       },
@@ -60,12 +60,35 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Sasslight",
-    description:
-      "Your trusted source for quality affiliate products and exclusive deals",
-    url: "https://sasslight.com",
-    logo: "https://sasslight.com/sasslight-logo.png",
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: "Sasslight",
+        description:
+          "Your trusted source for quality affiliate products and exclusive deals on digital products, software, and online courses",
+        url: "https://sasslight.jeremyalex64.workers.dev",
+        logo: "https://sasslight.com/sasslight-logo.png",
+        sameAs: [],
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer service",
+          url: "https://sasslight.jeremyalex64.workers.dev/contact",
+        },
+      },
+      {
+        "@type": "WebSite",
+        name: "Sasslight",
+        url: "https://sasslight.jeremyalex64.workers.dev",
+        description:
+          "Discover amazing digital products, software deals, and exclusive offers at Sasslight - your trusted affiliate marketing store",
+        potentialAction: {
+          "@type": "SearchAction",
+          target:
+            "https://sasslight.jeremyalex64.workers.dev/?q={search_term_string}",
+          "query-input": "required name=search_term_string",
+        },
+      },
+    ],
   };
 
   return (

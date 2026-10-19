@@ -12,9 +12,26 @@ const Footer = dynamic(() => import("@/components/Footer"), {
 });
 
 export const metadata: Metadata = {
-  title: "About Us - Sasslight",
+  title: "About Us - Sasslight Affiliate Marketing Store",
   description:
-    "Learn about Sasslight and our mission to provide the best affiliate products and exclusive deals.",
+    "Learn about Sasslight and our mission to provide the best affiliate products, software deals, and exclusive digital products. Your trusted source for quality recommendations.",
+  keywords: [
+    "about sasslight",
+    "affiliate marketing",
+    "digital products",
+    "software deals",
+    "exclusive offers",
+  ],
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Us - Sasslight",
+    description:
+      "Learn about Sasslight and our mission to provide the best affiliate products and exclusive deals",
+    url: "https://sasslight.jeremyalex64.workers.dev/about",
+    type: "website",
+  },
 };
 
 export default function About() {

@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title: "Privacy Policy - Sasslight",
   description:
     "Read Sasslight's privacy policy to understand how we collect, use, and protect your personal information.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function Privacy() {

@@ -21,10 +21,27 @@ export async function generateMetadata({
     title: `${category.name} - Sasslight`,
     description: `Discover ${category.primaryKeyword} and ${category.keywords.slice(0, 3).join(", ")}. Your trusted source for quality affiliate products and exclusive deals.`,
     keywords: [category.primaryKeyword, ...category.keywords],
+    alternates: {
+      canonical: `/categories/${slug}`,
+    },
     openGraph: {
       title: `${category.name} - Sasslight`,
       description: `Discover ${category.primaryKeyword} and ${category.keywords.slice(0, 3).join(", ")}. Your trusted source for quality affiliate products and exclusive deals.`,
-      url: `https://sasslight.com/categories/${slug}`,
+      url: `https://sasslight.jeremyalex64.workers.dev/categories/${slug}`,
+      type: "website",
+      images: [
+        {
+          url: "https://sasslight.com/sasslight-logo.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${category.name} - Sasslight`,
+      description: `Discover ${category.primaryKeyword} and ${category.keywords.slice(0, 3).join(", ")}. Your trusted source for quality affiliate products and exclusive deals.`,
+      images: ["https://sasslight.com/sasslight-logo.png"],
     },
   };
 }
