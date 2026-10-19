@@ -13,7 +13,7 @@ export default function CategoryFilter({
 }: CategoryFilterProps) {
   return (
     <div className="mb-6 sm:mb-8" style={{ minHeight: "80px" }}>
-      <h2 className="text-sm font-semibold text-gray-700 mb-3">
+      <h2 className="text-sm font-semibold text-gray-300 mb-3">
         Filter by Category
       </h2>
       <div className="flex flex-wrap gap-2">
@@ -22,7 +22,7 @@ export default function CategoryFilter({
           className={`px-4 py-2 rounded-full text-sm font-medium cursor-pointer whitespace-nowrap ${
             !selectedCategory
               ? "bg-amber-600 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
+              : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
           }`}
           style={{ minWidth: "120px" }}
         >
@@ -35,7 +35,7 @@ export default function CategoryFilter({
             className={`px-4 py-2 rounded-full text-sm font-medium cursor-pointer whitespace-nowrap ${
               selectedCategory === cat.slug
                 ? "bg-amber-600 text-white"
-                : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300"
+                : "bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700"
             }`}
             style={{ minWidth: "120px" }}
           >

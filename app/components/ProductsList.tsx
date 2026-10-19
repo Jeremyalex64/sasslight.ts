@@ -68,30 +68,34 @@ export default function ProductsList({
           placeholder="Search products by name..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full px-4 py-3 text-base sm:text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-900"
+          className="w-full px-4 py-3 text-base sm:text-lg border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 bg-gray-800 text-white placeholder-gray-400"
           style={{ minWidth: "280px" }}
         />
       </div>
 
       {products.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-500 text-base sm:text-lg">
+          <p className="text-gray-400 text-base sm:text-lg">
             No products available yet.
           </p>
-          <p className="text-gray-400 mt-2 text-sm sm:text-base">
+          <p className="text-gray-500 mt-2 text-sm sm:text-base">
             Check back soon for new additions!
           </p>
         </div>
       ) : (
         <>
           <div
-            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6"
-            style={{ minHeight: "680px" }}
+            className={`grid gap-3 sm:gap-6 ${
+              currentProducts.length < 4
+                ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto"
+                : "grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            }`}
+            style={{ minHeight: currentProducts.length < 4 ? "auto" : "680px" }}
           >
             {currentProducts.map((product, index) => (
               <div
                 key={product.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition active:scale-[0.98]"
+                className="bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition active:scale-[0.98]"
                 style={{
                   minHeight: "320px",
                   contain: "layout style paint",
@@ -119,14 +123,14 @@ export default function ProductsList({
                   </div>
                 )}
                 <div className="p-3 sm:p-6">
-                  <h2 className="text-sm sm:text-lg xl:text-xl font-semibold mb-2 text-gray-900 line-clamp-1">
+                  <h2 className="text-sm sm:text-lg xl:text-xl font-semibold mb-2 text-white line-clamp-1">
                     {product.name}
                   </h2>
-                  <p className="text-gray-900 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
+                  <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
                     {product.description}
                   </p>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                    <span className="text-xl sm:text-2xl font-bold text-green-600">
+                    <span className="text-xl sm:text-2xl font-bold text-green-400">
                       {product.price}
                     </span>
                     <a
@@ -149,17 +153,17 @@ export default function ProductsList({
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="w-full sm:w-auto px-6 py-3 sm:px-4 sm:py-2 bg-white border rounded-md hover:bg-gray-50 active:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                className="w-full sm:w-auto px-6 py-3 sm:px-4 sm:py-2 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 active:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base text-white"
               >
                 Previous
               </button>
-              <span className="text-gray-700 text-sm sm:text-base">
+              <span className="text-gray-300 text-sm sm:text-base">
                 Page {currentPage} of {totalPages}
               </span>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="w-full sm:w-auto px-6 py-3 sm:px-4 sm:py-2 bg-white border rounded-md hover:bg-gray-50 active:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+                className="w-full sm:w-auto px-6 py-3 sm:px-4 sm:py-2 bg-gray-800 border border-gray-700 rounded-md hover:bg-gray-700 active:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base text-white"
               >
                 Next
               </button>
