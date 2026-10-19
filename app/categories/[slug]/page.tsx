@@ -1,20 +1,9 @@
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
 import { seoCategories } from "@/lib/seo-categories";
 import Navigation from "@/components/Navigation";
 import CategoryFilter from "../../components/CategoryFilter";
-
-const Footer = dynamic(() => import("@/components/Footer"), {
-  loading: () => <footer className="h-16 bg-gray-900" />,
-});
-
-const ProductsList = dynamic(() => import("../../components/ProductsList"), {
-  loading: () => (
-    <div className="text-center py-12">
-      <p className="text-gray-500">Loading products...</p>
-    </div>
-  ),
-});
+import ProductsList from "../../components/ProductsList";
+import Footer from "@/components/Footer";
 
 export async function generateMetadata({
   params,
