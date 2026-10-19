@@ -27,16 +27,16 @@ export default async function Blogs() {
   const blogPosts = await getAllPosts();
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gray-900">
       <Navigation />
       <main className="flex-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Blog</h1>
+          <h1 className="text-4xl font-bold text-white mb-8">Blog</h1>
 
           {blogPosts.length === 0 ? (
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               No posts yet. Create your first article in{" "}
-              <Link href="/studio" className="text-amber-600 hover:underline">
+              <Link href="/studio" className="text-amber-500 hover:underline">
                 Sanity Studio
               </Link>
               .
@@ -46,13 +46,16 @@ export default async function Blogs() {
               {blogPosts.map((post) => (
                 <article
                   key={post._id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+                  className="bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
                 >
                   {post.coverImage ? (
                     <Link href={`/blogs/${post.slug.current}`}>
                       <div className="relative h-48 w-full">
                         <Image
-                          src={urlFor(post.coverImage).width(600).height(338).url()}
+                          src={urlFor(post.coverImage)
+                            .width(600)
+                            .height(338)
+                            .url()}
                           alt={post.title}
                           fill
                           className="object-cover"
@@ -65,12 +68,12 @@ export default async function Blogs() {
                   <div className="p-6">
                     <div className="flex items-center gap-2 mb-3 flex-wrap">
                       {post.categories?.[0] ? (
-                        <span className="text-xs font-medium text-amber-600 bg-amber-50 px-2 py-1 rounded">
+                        <span className="text-xs font-medium text-amber-500 bg-gray-700 px-2 py-1 rounded">
                           {post.categories[0]}
                         </span>
                       ) : null}
                       {post.publishedAt ? (
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-400">
                           {new Date(post.publishedAt).toLocaleDateString(
                             "en-US",
                             {
@@ -82,20 +85,22 @@ export default async function Blogs() {
                         </span>
                       ) : null}
                     </div>
-                    <h2 className="text-xl font-semibold mb-3 text-gray-900">
+                    <h2 className="text-xl font-semibold mb-3 text-white">
                       <Link
                         href={`/blogs/${post.slug.current}`}
-                        className="hover:text-amber-700 transition"
+                        className="hover:text-amber-500 transition"
                       >
                         {post.title}
                       </Link>
                     </h2>
                     {post.excerpt ? (
-                      <p className="text-gray-600 text-sm mb-4">{post.excerpt}</p>
+                      <p className="text-gray-400 text-sm mb-4">
+                        {post.excerpt}
+                      </p>
                     ) : null}
                     <Link
                       href={`/blogs/${post.slug.current}`}
-                      className="text-amber-600 font-medium hover:text-amber-700 transition"
+                      className="text-amber-500 font-medium hover:text-amber-400 transition"
                       aria-label={`Read more about ${post.title}`}
                     >
                       Read More →
