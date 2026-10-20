@@ -109,13 +109,41 @@ export default function RootLayout({
           as="image"
           type="image/png"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preconnect"
+          href="https://pub-ce20785b75344a2485765616a6418c35.r2.dev"
+        />
+        <link rel="dns-prefetch" href="/api/products" />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              @font-face {
+                font-family: system-ui;
+                font-display: swap;
+              }
+              body {
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+              }
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           async
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <div id="root" style={{ minHeight: "100vh" }}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

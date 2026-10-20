@@ -46,9 +46,9 @@ export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex-1 bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Contact Us</h1>
+          <h1 className="text-4xl font-bold text-white mb-8">Contact Us</h1>
           <ContactForm />
         </div>
       </main>

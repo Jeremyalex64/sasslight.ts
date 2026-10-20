@@ -38,17 +38,17 @@ export default function About() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex-1 bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">
+          <h1 className="text-4xl font-bold text-white mb-8">
             About Sasslight
           </h1>
-          <div className="bg-white rounded-lg shadow-md p-8 space-y-6">
+          <div className="bg-gray-800 rounded-lg shadow-md p-8 space-y-6">
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 Our Mission
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 At Sasslight, we are dedicated to connecting you with the best
                 digital products and software solutions. Our platform curates
                 high-quality affiliate products that help businesses and
@@ -56,10 +56,10 @@ export default function About() {
               </p>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 What We Do
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 We partner with leading software vendors and digital product
                 creators to bring you exclusive deals and trusted
                 recommendations. Our team carefully evaluates each product to
@@ -68,31 +68,33 @@ export default function About() {
               </p>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 Our Values
               </h2>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>
-                  <strong>Quality:</strong> We only recommend products we
-                  believe in
+                  <strong className="text-white">Quality:</strong> We only
+                  recommend products we believe in
                 </li>
                 <li>
-                  <strong>Transparency:</strong> We clearly disclose our
-                  affiliate relationships
+                  <strong className="text-white">Transparency:</strong> We
+                  clearly disclose our affiliate relationships
                 </li>
                 <li>
-                  <strong>Trust:</strong> Your satisfaction is our top priority
+                  <strong className="text-white">Trust:</strong> Your
+                  satisfaction is our top priority
                 </li>
                 <li>
-                  <strong>Innovation:</strong> We stay ahead of digital trends
+                  <strong className="text-white">Innovation:</strong> We stay
+                  ahead of digital trends
                 </li>
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 Why Choose Us
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 With years of experience in the digital products space, our team
                 has the expertise to guide you to the right solutions. We save
                 you time by doing the research and provide honest reviews to
@@ -100,10 +102,10 @@ export default function About() {
               </p>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 Get in Touch
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Have questions or want to learn more? We'd love to hear from
                 you. Visit our contact page to reach out to our team.
               </p>

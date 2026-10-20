@@ -25,21 +25,21 @@ export default function Terms() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex-1 bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">
+          <h1 className="text-4xl font-bold text-white mb-8">
             Terms and Conditions
           </h1>
-          <div className="bg-white rounded-lg shadow-md p-8 space-y-6">
+          <div className="bg-gray-800 rounded-lg shadow-md p-8 space-y-6">
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 1. Introduction
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 Welcome to Sasslight. By accessing or using our website and
                 services, you agree to be bound by these Terms and Conditions.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>
                   These terms govern your use of our affiliate marketing
                   platform
@@ -59,15 +59,15 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 2. Affiliate Products
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 Our website features affiliate products from various third-party
                 vendors. When you purchase through our affiliate links, we may
                 earn a commission at no additional cost to you.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>
                   We curate products from trusted vendors and affiliate partners
                 </li>
@@ -84,15 +84,15 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 3. User Responsibilities
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 Users are responsible for maintaining the confidentiality of
                 their account information and for all activities that occur
                 under their account.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>Keep your login credentials secure and confidential</li>
                 <li>
                   Notify us immediately of any unauthorized access to your
@@ -111,15 +111,15 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 4. Product Information
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 We strive to provide accurate product information, but we do not
                 warrant that descriptions are error-free. All product
                 information is provided by the respective vendors.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>
                   Product descriptions, images, and specifications are provided
                   by vendors
@@ -142,15 +142,15 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 5. Limitation of Liability
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 Sasslight shall not be liable for any indirect, incidental,
                 special, or consequential damages arising from the use of our
                 products or services.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>
                   We are not liable for any damages resulting from use of our
                   website
@@ -167,14 +167,14 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 6. Intellectual Property
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 All content on our website, including text, graphics, logos, and
                 software, is the property of Sasslight or its content suppliers.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>All rights are reserved unless explicitly stated</li>
                 <li>
                   You may not reproduce, distribute, or create derivative works
@@ -190,14 +190,14 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 7. Termination
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 We reserve the right to terminate or suspend your access to our
                 services at any time, without prior notice, for any reason.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>We may terminate accounts for violation of these terms</li>
                 <li>
                   We may suspend services for maintenance or technical reasons
@@ -212,15 +212,15 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 8. Changes to Terms
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 We reserve the right to modify these terms at any time.
                 Continued use of the website constitutes acceptance of any
                 changes.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>We will post updated terms on this page</li>
                 <li>
                   Significant changes will be communicated via email or website
@@ -231,14 +231,14 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 9. Governing Law
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 These terms shall be governed by and construed in accordance
                 with applicable laws.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>
                   Any disputes shall be resolved in accordance with applicable
                   laws
@@ -253,14 +253,14 @@ export default function Terms() {
               </ul>
             </section>
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              <h2 className="text-2xl font-semibold text-white mb-4">
                 10. Contact Us
               </h2>
-              <p className="text-gray-600 mb-3">
+              <p className="text-gray-300 mb-3">
                 If you have any questions about these Terms and Conditions,
                 please contact us through our contact page.
               </p>
-              <ul className="list-disc pl-6 text-gray-600 space-y-2">
+              <ul className="list-disc pl-6 text-gray-300 space-y-2">
                 <li>Email: legal@sasslight.com</li>
                 <li>Contact Form: Available on our Contact page</li>
                 <li>
